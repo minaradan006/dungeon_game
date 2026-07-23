@@ -55,7 +55,7 @@ def scenario_1(character: Character, level: int):
 	time.sleep(3)
 
 	ahead = Room(level)
-	print(textwrap.fill(f"Ahead, there is {ahead.desc}({ahead.event}).", width=70) + "\n")
+	print(textwrap.fill(f"Ahead, there is a {ahead.desc}({ahead.event}).", width=70) + "\n")
 	time.sleep(3)
 
 	choices = ["Go ahead", "Check stats", "Open inventory"]
@@ -75,7 +75,8 @@ def scenario_1(character: Character, level: int):
 			inventory(character)
 
 		if choice.lower() == "go ahead":
-			print("You decide to go straight.\n")
+			print(f"You decide to go straight.\n")
+			time.sleep(3)
 			return ahead
 
 def scenario_2(character: Character, level: int):
@@ -83,11 +84,11 @@ def scenario_2(character: Character, level: int):
 	time.sleep(3)
 
 	left = Room(level)
-	print(textwrap.fill(f"To the left, there is {left.desc}({left.event}).", width=70) + "\n")
+	print(textwrap.fill(f"To the left, there is a {left.desc}({left.event}).", width=70) + "\n")
 	time.sleep(3)
 
 	right = Room(level)
-	print(textwrap.fill(f"To the right, there is {right.desc}({right.event}).", width=70) + "\n")
+	print(textwrap.fill(f"To the right, there is a {right.desc}({right.event}).", width=70) + "\n")
 	time.sleep(3)
 
 	choices = ["Go left", "Go right", "Check stats", "Open inventory"]
@@ -107,11 +108,13 @@ def scenario_2(character: Character, level: int):
 			inventory(character)
 	
 		if choice.lower() == "go left":
-			print("You decide to go to the left.\n")
+			print(f"You decide to go to the left.\n")
+			time.sleep(3)
 			return left
 
 		if choice.lower() == "go right":
-			print("You decide to go to the right.\n")
+			print(f"You decide to go to the right.\n")
+			time.sleep(3)
 			return right
 
 def scenario_3(character: Character, level: int):
@@ -119,15 +122,15 @@ def scenario_3(character: Character, level: int):
 	time.sleep(3)
 
 	left = Room(level)
-	print(textwrap.fill(f"To the left, there is {left.desc}({left.event}).", width=70) + "\n")
+	print(textwrap.fill(f"To the left, there is a {left.desc}({left.event}).", width=70) + "\n")
 	time.sleep(3)
 
 	right = Room(level)
-	print(textwrap.fill(f"To the right, there is {right.desc}({right.event}).", width=70) + "\n")
+	print(textwrap.fill(f"To the right, there is a {right.desc}({right.event}).", width=70) + "\n")
 	time.sleep(3)
 
 	ahead = Room(level)
-	print(textwrap.fill(f"Ahead, there is {ahead.desc}({ahead.event}).", width=70) + "\n")
+	print(textwrap.fill(f"Ahead, there is a {ahead.desc}({ahead.event}).", width=70) + "\n")
 	time.sleep(3)
 
 	choices = ["Go left", "Go right","Go ahead", "Check stats", "Open inventory"]
@@ -147,13 +150,16 @@ def scenario_3(character: Character, level: int):
 			inventory(character)
 	
 		if choice.lower() == "go left":
-			print("You decide to go to the left.\n")
+			print(f"You decide to go to the left.\n")
+			time.sleep(3)
 			return left
 
 		if choice.lower() == "go right":
-			print("You decide to go to the right.\n")
+			print(f"You decide to go to the right.\n")
+			time.sleep(3)
 			return right
 
 		if choice.lower() == "go ahead":
-			print("You decide to go straight.\n")
+			print(f"You decide to go straight.\n")
+			time.sleep(3)
 			return ahead

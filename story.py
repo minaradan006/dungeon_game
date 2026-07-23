@@ -65,7 +65,7 @@ def begin_story():
 	print()
 	time.sleep(3)
 
-	print(textwrap.fill("Reluctantly, you open your mouth and utter the three words.\n", width=60))
+	print(textwrap.fill("Hesitantly, you open your mouth and utter the three words.\n", width=60))
 	print()
 	time.sleep(2)
 

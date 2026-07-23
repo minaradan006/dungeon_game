@@ -1,6 +1,6 @@
 import time
 import random
-from items import room_types, room_adjectives
+from items import room_types, room_adjectives, room_types_desc, room_adjectives_desc
 
 class Weapon:
 	def __init__(self, name: str = None, damage: int = 0, desc: str = None):
@@ -138,7 +138,10 @@ class Room:
 		r_adj = random.choice(room_adjectives)
 		r_type = random.choice(room_types)
 
-		self.desc = f"a {r_adj} {r_type}"
+		self.desc = f"{r_adj} {r_type}"
+		self.entry = room_types_desc[r_type][0]
+		self.exit = room_types_desc[r_type][1]
+		self.adj = room_adjectives_desc[r_adj]
 
 		self.event = random.choices(
 		["enemy", "treasure", "trap", "shop", "empty"],

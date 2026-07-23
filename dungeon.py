@@ -5,6 +5,34 @@ from obj import Weapon, Armour, Potion, Character, Room
 from story import show_start_screen, begin_story
 from scenarios  import scenario_1, scenario_2, scenario_3
 
+def enter_room(room: Room):
+	print("-" * 70 + "\n")
+	time.sleep(1)
+
+	print(f"You enter the {room.desc} and look around." + "\n")
+	time.sleep(3)
+
+	print(textwrap.fill(room.entry, 70) + "\n")
+	time.sleep(8)
+
+	print(textwrap.fill(room.adj, 70) + "\n")
+	time.sleep(5)
+
+	if room.event == "enemy":
+		enemy(character, level)
+
+	print(textwrap.fill(room.exit, 70) + "\n")
+	time.sleep(5)
+
+	print("You decide to leave the room.\n")
+	time.sleep(3)
+
+	print("-" * 70 + "\n")
+	time.sleep(1)
+
+def enemy(character: Character, level: int):
+	pass
+
 if __name__ == "__main__":
 	show_start_screen()
 
@@ -31,11 +59,14 @@ if __name__ == "__main__":
 		for mini in range(0, mini_stages):
 			scenario = random.choice([1, 2, 3])
 
+			room = None
 			if scenario == 1:
 				room = scenario_1(character, level)
 			elif scenario == 2:
 				room =  scenario_2(character, level)
 			elif scenario == 3:
 				room = scenario_3(character, level)
+
+			enter_room(room)
 
 	print("You did it!")
