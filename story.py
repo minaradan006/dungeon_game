@@ -97,3 +97,8 @@ def begin_story():
 		else:
 			print(textwrap.fill("The sum of the attack stat and the defense stat should be 10. Try again.\n", width=60))
 			print()
+
+def print_choices(valid_choices):
+	for choice in valid_choices:
+		print(f"[{choice}]", end="  ")
+	print()

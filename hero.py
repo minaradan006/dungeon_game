@@ -31,7 +31,7 @@ class Potion:
 class Character:
 	def __init__(self, name: str, attack: int, defense: int):
 		self.name = name
-		self.health = 80
+		self.health = 100
 		self.attack = attack
 		self.defense = defense
 		self.gold = 0

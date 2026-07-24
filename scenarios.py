@@ -3,11 +3,7 @@ import textwrap
 import random
 from hero import Character, Room
 from rooms import walls, room_adjectives
-
-def print_choices(valid_choices):
-	for choice in valid_choices:
-		print(f"[{choice}]", end="  ")
-	print()
+from story import print_choices
 
 def inventory(character: Character):
 	print("INVENTORY".center(40, "=") + "\n")
@@ -34,21 +30,21 @@ def inventory(character: Character):
 			weapon_name = input("What weapon do you want to equip? ")
 			print()
 			character.equip_weapon(weapon_name)
-
-		if choice.lower() == "equip armour":
+		elif choice.lower() == "equip armour":
 			armour_name = input("What armour do you want to equip? ")
 			print()
 			character.equip_armour(armour_name)
-
-		if choice.lower() == "heal":
+		elif choice.lower() == "heal":
 			potion_name = input("What potion do you want to use? ")
 			print()
 			character.heal(potion_name)
-
-		if choice.lower() == "go back":
+		elif choice.lower() == "go back":
 			break
+		else:
+			print("Invalid choice. Try again\n")
+			time.sleep(2)
 
-	print("Closing inventory..." + "\n")
+	print("Closing inventory...\n")
 
 def scenario_1(character: Character, level: int):
 	print(textwrap.fill(f"Walls of {random.choice(walls)} block your sides. You can only go [ahead].", width=70) + "\n")
@@ -70,14 +66,15 @@ def scenario_1(character: Character, level: int):
 		if choice.lower() == "check stats":
 			print("STATS".center(40, "=") + "\n")
 			print(character)
-
-		if choice.lower() == "open inventory":
+		elif choice.lower() == "open inventory":
 			inventory(character)
-
-		if choice.lower() == "go ahead":
+		elif choice.lower() == "go ahead":
 			print(f"You decide to go straight.\n")
 			time.sleep(3)
 			return ahead
+		else:
+			print("Invalid choice. Try again.\n")
+			time.sleep(2)
 
 def scenario_2(character: Character, level: int):
 	print(textwrap.fill(f"A wall of {random.choice(walls)} blocks your path. You can only go [left] or [right].", width=70) + "\n")
@@ -103,19 +100,19 @@ def scenario_2(character: Character, level: int):
 		if choice.lower() == "check stats":
 			print("STATS".center(40, "=") + "\n")
 			print(character)
-	
-		if choice.lower() == "open inventory":
+		elif choice.lower() == "open inventory":
 			inventory(character)
-	
-		if choice.lower() == "go left":
+		elif choice.lower() == "go left":
 			print(f"You decide to go to the left.\n")
 			time.sleep(3)
 			return left
-
-		if choice.lower() == "go right":
+		elif choice.lower() == "go right":
 			print(f"You decide to go to the right.\n")
 			time.sleep(3)
 			return right
+		else:
+			print("Invalid choice. Try again\n")
+			time.sleep(2)
 
 def scenario_3(character: Character, level: int):
 	print(textwrap.fill(f"You stand at a crossroad. You can go [left], [right] or [ahead].", width=70) + "\n")
@@ -145,21 +142,20 @@ def scenario_3(character: Character, level: int):
 		if choice.lower() == "check stats":
 			print("STATS".center(40, "=") + "\n")
 			print(character)
-	
-		if choice.lower() == "open inventory":
+		elif choice.lower() == "open inventory":
 			inventory(character)
-	
-		if choice.lower() == "go left":
+		elif choice.lower() == "go left":
 			print(f"You decide to go to the left.\n")
 			time.sleep(3)
 			return left
-
-		if choice.lower() == "go right":
+		elif choice.lower() == "go right":
 			print(f"You decide to go to the right.\n")
 			time.sleep(3)
 			return right
-
-		if choice.lower() == "go ahead":
+		elif choice.lower() == "go ahead":
 			print(f"You decide to go straight.\n")
 			time.sleep(3)
 			return ahead
+		else:
+			print("Invalid choice. Try again\n")
+			time.sleep(2)
