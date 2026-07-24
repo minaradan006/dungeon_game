@@ -1,8 +1,8 @@
 import time
 import textwrap
 import random
-from obj import Character, Room
-from items import walls, room_adjectives
+from hero import Character, Room
+from rooms import walls, room_adjectives
 
 def print_choices(valid_choices):
 	for choice in valid_choices:

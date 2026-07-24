@@ -1,11 +1,13 @@
 import random
 import time
 import textwrap
-from obj import Weapon, Armour, Potion, Character, Room
+from hero import Weapon, Armour, Potion, Character
+from rooms import Room
 from story import show_start_screen, begin_story
 from scenarios  import scenario_1, scenario_2, scenario_3
+from monsters import enemy
 
-def enter_room(room: Room):
+def enter_room(room: Room, character: Character, level: int):
 	print("-" * 70 + "\n")
 	time.sleep(1)
 
@@ -19,7 +21,7 @@ def enter_room(room: Room):
 	time.sleep(5)
 
 	if room.event == "enemy":
-		enemy(character, level)
+		enemy(character, level, room.monster)
 
 	print(textwrap.fill(room.exit, 70) + "\n")
 	time.sleep(5)
@@ -29,9 +31,6 @@ def enter_room(room: Room):
 
 	print("-" * 70 + "\n")
 	time.sleep(1)
-
-def enemy(character: Character, level: int):
-	pass
 
 if __name__ == "__main__":
 	show_start_screen()

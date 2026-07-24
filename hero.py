@@ -1,6 +1,5 @@
 import time
 import random
-from items import room_types, room_adjectives, room_types_desc, room_adjectives_desc
 
 class Weapon:
 	def __init__(self, name: str = None, damage: int = 0, desc: str = None):
@@ -32,7 +31,7 @@ class Potion:
 class Character:
 	def __init__(self, name: str, attack: int, defense: int):
 		self.name = name
-		self.health = 100
+		self.health = 80
 		self.attack = attack
 		self.defense = defense
 		self.gold = 0
@@ -61,7 +60,7 @@ class Character:
 		for idx, potion in enumerate(self.inventory["health potions"]):
 			if potion.name.lower() == potion_name.lower():
 				if self.health < 100:
-					print(f"Your health has been restored!")
+					print(f"Your health has been restored!\n")
 					self.health += potion.points
 
 					if self.health > 100:
@@ -70,9 +69,9 @@ class Character:
 					del self.inventory["health potions"][idx]
 					return
 				else:
-					print(f"Your health is full.")
+					print(f"Your health is full.\n")
 					return
-		print(f"No {potion_name} in your inventory...")
+		print(f"No {potion_name} in your inventory...\n")
 
 
 	def equip_weapon(self, weapon_name):
@@ -132,18 +131,3 @@ class Character:
 			base_defense = self.defense
 			armour_bonus = self.equipped["armour"].protection
 			return base_defense + armour_bonus
-
-class Room:
-	def __init__(self, level):
-		r_adj = random.choice(room_adjectives)
-		r_type = random.choice(room_types)
-
-		self.desc = f"{r_adj} {r_type}"
-		self.entry = room_types_desc[r_type][0]
-		self.exit = room_types_desc[r_type][1]
-		self.adj = room_adjectives_desc[r_adj]
-
-		self.event = random.choices(
-		["enemy", "treasure", "trap", "shop", "empty"],
-		weights=[0.4 + (level * 0.05), 0.2, 0.3, 0.2, 0.2],
-	)[0]
