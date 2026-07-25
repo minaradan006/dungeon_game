@@ -1,32 +1,6 @@
 import time
 import random
-
-class Weapon:
-	def __init__(self, name: str = None, damage: int = 0, desc: str = None):
-		self.name = name
-		self.damage = damage
-		self.desc = desc
-
-	def __str__(self):
-		return f"[{self.name}] (+{self.damage} ATK): {self.desc}"
-
-class Armour:
-	def __init__(self, name: str = None, protection: int = 0, desc: str = None):
-		self.name = name
-		self.protection = protection
-		self.desc = desc
-
-	def __str__(self):
-		return f"[{self.name}] (+{self.protection} DEF): {self.desc}"
-
-class Potion:
-	def __init__(self, name: str, points:int, desc: str):
-		self.name = name
-		self.points = points
-		self.desc = desc
-
-	def __str__(self):
-		return f"[{self.name}] (+{self.points} HP): {self.desc}"
+from items import Weapon, Armour
 
 class Character:
 	def __init__(self, name: str, attack: int, defense: int):
@@ -35,6 +9,7 @@ class Character:
 		self.attack = attack
 		self.defense = defense
 		self.gold = 0
+		self.lockpicks = 0
 		self.inventory = {
 			"weapons": [],
 			"armour": [],
@@ -51,10 +26,11 @@ class Character:
 		attack = f"ATK: {self.get_total_attack()}\n"
 		defense = f"DEF: {self.get_total_defense()}\n"
 		gold = f"Gold: {self.gold}\n"
+		lockpicks = f"Lockpicks: {self.lockpicks}\n"
 		weapon = f"Weapon: {self.equipped["weapon"].name}\n"
 		armour = f"Armour: {self.equipped["armour"].name}\n"
 
-		return name + health + attack + defense + gold + weapon + armour
+		return name + health + attack + defense + gold + lockpicks + weapon + armour
 
 	def heal(self, potion_name):
 		for idx, potion in enumerate(self.inventory["health potions"]):

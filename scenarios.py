@@ -10,7 +10,7 @@ def inventory(character: Character):
 	print("INVENTORY".center(40, "=") + "\n")
 
 	while(True):
-		print("What do you want to do?")
+		print("What will you do?")
 		time.sleep(0.5)
 		choices = ["Equip Weapon", "Equip Armour", "Heal", "Close inventory"]
 		print_choices(choices)

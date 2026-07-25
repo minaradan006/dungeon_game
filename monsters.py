@@ -18,10 +18,10 @@ class Monster:
 		return f"[{self.name}]: {self.desc}\nHP: {self.health}/{self.max_health}\n"
 
 	def attack_level(self, level: int):
-		self.attack = int(self.attack * (1 + level * 0.05))
+		self.attack = int(self.attack * (1 + level * 0.25))
 
 	def health_level(self, level: int):
-		self.health = int(self.health * (1 + level * 0.1))
+		self.health = int(self.health * (1 + level * 0.25))
 		self.max_health = self.health
 
 	def update_stats(self, level: int):
@@ -121,6 +121,7 @@ def enemy(character: Character, level: int, monster: Monster) -> bool:
 	while True:
 		if character.health <= 0:
 			print("You fainted...\n")
+			time.sleep(5)
 			return False
 
 		print("What will you do?")

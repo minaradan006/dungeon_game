@@ -1,11 +1,13 @@
 import random
 import time
 import textwrap
-from hero import Weapon, Armour, Potion, Character
+from hero import Character
+from items import Weapon, Armour, Potion
 from rooms import Room
 from story import show_start_screen, begin_story
 from scenarios  import scenario_1, scenario_2, scenario_3
 from monsters import enemy
+from treasure_room import treasure
 
 def enter_room(room: Room, character: Character, level: int):
 	print("-" * 70 + "\n")
@@ -21,7 +23,17 @@ def enter_room(room: Room, character: Character, level: int):
 	time.sleep(5)
 
 	if room.event == "enemy":
-		enemy(character, level, room.monster)
+		if not enemy(character, level, room.monster):
+			print(textwrap.fill("You open your eyes and see the faint sunlight streaming through the tree leaves.", 70) + "\n")
+			time.sleep(3)
+
+			print(textwrap.fill("The dungeon entrace is open, ready for you to try again.\n", 70) + "\n")
+			time.sleep(3)
+
+			return
+
+	if room.event == "treasure":
+		treasure(character, level)
 
 	print(textwrap.fill(room.exit, 70) + "\n")
 	time.sleep(5)
