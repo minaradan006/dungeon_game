@@ -61,6 +61,7 @@ class Character:
 			if potion.name.lower() == potion_name.lower():
 				if self.health < 100:
 					print(f"Your health has been restored!\n")
+					time.sleep(2)
 					self.health += potion.points
 
 					if self.health > 100:
@@ -70,8 +71,10 @@ class Character:
 					return
 				else:
 					print(f"Your health is full.\n")
+					time.sleep(2)
 					return
 		print(f"No {potion_name} in your inventory...\n")
+		time.sleep(2)
 
 
 	def equip_weapon(self, weapon_name):

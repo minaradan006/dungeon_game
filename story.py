@@ -61,7 +61,7 @@ def begin_story():
 	print()
 	time.sleep(3)
 
-	print(textwrap.fill("You remember reading in The Book of Dungeons that power means attack and defense. Their sum must be 10.\n", width=60))
+	print(textwrap.fill("You remember reading in The Book of Dungeons that power means attack and defense. Their sum must be 20.\n", width=60))
 	print()
 	time.sleep(3)
 
@@ -76,7 +76,7 @@ def begin_story():
 		defense = int(input("What is your defense stat? "))
 		print()
 
-		if attack + defense == 10:
+		if attack + defense == 20:
 			print(textwrap.fill("The door rumbles and slowly lowers itself into the ground.\n", width=60))
 			print()
 			time.sleep(3)
@@ -95,7 +95,7 @@ def begin_story():
 
 			return name, attack, defense
 		else:
-			print(textwrap.fill("The sum of the attack stat and the defense stat should be 10. Try again.\n", width=60))
+			print(textwrap.fill("The sum of the attack stat and the defense stat should be 20. Try again.\n", width=60))
 			print()
 
 def print_choices(valid_choices):

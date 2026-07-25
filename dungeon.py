@@ -66,6 +66,6 @@ if __name__ == "__main__":
 			elif scenario == 3:
 				room = scenario_3(character, level)
 
-			enter_room(room)
+			enter_room(room, character, level)
 
 	print("You did it!")

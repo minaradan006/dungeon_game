@@ -15,7 +15,7 @@ class Monster:
 		self.attack = attack
 
 	def __str__(self):
-		return f"{self.name}: {self.desc}\nHP: {self.health}/{self.max_health}\n"
+		return f"[{self.name}]: {self.desc}\nHP: {self.health}/{self.max_health}\n"
 
 	def attack_level(self, level: int):
 		self.attack = int(self.attack * (1 + level * 0.05))
@@ -28,19 +28,19 @@ class Monster:
 		self.attack_level(level)
 		self.health_level(level)
 
-	def attack_character(self, character: Character, level: int):
-		random_atk = random.choice(range(-20 * level, 20 * level, 1))
+	def attack_character(self, character: Character):
+		random_atk = random.choice(range(-50, 50, 5))
 
-		if random_atk < int(-20 * level * 0.75):
+		if random_atk < int(-50 * 0.75):
 			print(f"{self.name} doesn't take you very seriously, dealing a very weak attack!\n")
 			time.sleep(3)
-		elif random_atk < int(-20 * level * 0.25):
-			print("The monster misses parts of its attack, dealing a weak attack.\n")
+		elif random_atk < int(-50 * 0.5):
+			print(f"{self.name} misses parts of its attack, dealing a weak attack.\n")
 			time.sleep(3)
-		elif random_atk < int(20 * level * 0.25):
+		elif random_atk < int(50 * 0.5):
 			print(f"{self.name} throws you to the back of the room, dealing a normal attack.\n")
 			time.sleep(3)
-		elif random_atk < int(20 * level * 0.75):
+		elif random_atk < int(50 * 0.75):
 			print(f"{self.name} slashes at you, dealing a powerful attack.\n")
 			time.sleep(3)
 		else:
@@ -53,19 +53,19 @@ class Monster:
 		print(f"Your HP dropped by {damage} points.\n")
 		time.sleep(3)
 
-	def damage_taken(self, character: Character, level: int):
-		random_atk = random.choice(range(-20 * level, 20 * level, 1))
+	def damage_taken(self, character: Character):
+		random_atk = random.choice(range(-50, 50, 5))
 
-		if random_atk < int(-20 * level * 0.75):
+		if random_atk < int(-50 * 0.75):
 			print("You trip and fumble, landing a very weak attack...\n")
 			time.sleep(3)
-		elif random_atk < int(-20 * level * 0.25):
+		elif random_atk < int(-50 * 0.5):
 			print("You get distracted, landing a weak attack.\n")
 			time.sleep(3)
-		elif random_atk < int(20 * level * 0.25):
+		elif random_atk < int(50 * 0.5):
 			print(f"You punch {self.name}, landing a normal attack.\n")
 			time.sleep(3)
-		elif random_atk < int(20 * level * 0.75):
+		elif random_atk < int(50 * 0.75):
 			print(f"You slash at {self.name}, landing a powerful attack.\n")
 			time.sleep(3)
 		else:
@@ -93,7 +93,7 @@ fight_messages = [
 	"The monster seems scared.\n",
 	"A whimper can be heard echoing in the room.\n",
 	"The room shakes, dust particles floating in the air.\n",
-	"The monster seems bored.\n"
+	"The monster seems bored.\n",
 	"The monster stares at you, making you shiver.\n",
 	"The monster doesn't seem too pleased.\n",
 	"The lights seem to glow brighter.\n",
@@ -146,22 +146,22 @@ def enemy(character: Character, level: int, monster: Monster) -> bool:
 		elif choice.lower() == "attack":
 			print("You decide to attack the monster.\n")
 			time.sleep(3)
-			monster.damage_taken(character, level)
+			monster.damage_taken(character)
 
 			if monster.health <= 0:
+				print("=" * 70 + "\n")
 				print(f"You defeated {monster.name}!\n")
+				print("=" * 70 + "\n")
 				return True
 
 			print("-" * 70 + "\n")
 			print(random.choice(fight_messages))
+			print("-" * 70 + "\n")
 			time.sleep(3)
 		else:
 			print("Invalid choice. Try again.\n")
 			time.sleep(2)
 			continue
 
-		monster.attack_character(character, level)
+		monster.attack_character(character)
 		print("-" * 70 + "\n")
-
-# character = Character("Mina", 10, 10)
-# enemy(character, 3, rose_assasin)

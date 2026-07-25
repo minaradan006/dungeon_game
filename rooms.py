@@ -28,7 +28,7 @@ room_adjectives_desc = {
 	"dusty": "A thick layer of dust is layered on the floor.",
 	"musty": "There is a moldy smell lingering in the room.",
 	"echoing": "You try screaming, but you are only met with your own voice replying.",
-	"freezing": "The room is so cold that you can see your own breath and the walls appear a shade light blue.",
+	"freezing": "The room is so cold that you can see your own breath and the walls appear a shade of light blue.",
 	"burning": "There are few fires that make it difficult to breathe, but they seem to be contained.",
 	"crumbling": "The ceiling and walls are cracked, dust falling from them.",
 	"blood-stained": "The walls are covered in glossy, maroon streaks of blood.",
@@ -59,7 +59,7 @@ room_types_desc = {
 					"You hear a clicking sound and the cell door opens.", rat_king],
 	"hallway": ["A thin and long persian carpet stretches from one end of the room to the other, a few landscape paintings hung on the walls.",
 			   "A painting of a sunset falls on the ground and reveals a hidden corridor.", eye],
-	"library": ["The scent of old paper makes you dizzy, the walls of the rooms being only a circular bookshelf filled to the brim with leatherbound books.",
+	"library": ["The scent of old paper makes you dizzy, the walls being only a circular bookshelf filled to the brim with leatherbound books.",
 			   "You pull the only golden book from its shelf and a hidden crawl space opens.", wise_owl],
 	"garden": ["There are thousands of different coloured flowers, a myriad of butterflies floating about, the dewy grass glistening.",
 			  "The flowers move on their own to reveal a trapdoor underneath.", rose_assasin]
