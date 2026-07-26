@@ -43,7 +43,9 @@ class Character:
 					if self.health > 100:
 						self.health = 100
 
-					del self.inventory["health potions"][idx]
+					potion.num -= 1
+					if potion.num == 0:
+						del self.inventory["health potions"][idx]
 					return
 				else:
 					print(f"Your health is full.\n")
