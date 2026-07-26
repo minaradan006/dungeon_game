@@ -33,7 +33,7 @@ def enter_room(room: Room, character: Character, level: int):
 			return
 
 	if room.event == "treasure":
-		treasure(character, level)
+		treasure(character)
 
 	print(textwrap.fill(room.exit, 70) + "\n")
 	time.sleep(5)
@@ -57,7 +57,7 @@ if __name__ == "__main__":
 	character.inventory["weapons"].append(weapon)
 	character.inventory["armour"].append(armour)
 	character.inventory["health potions"].append(potion)
-
+	character.lockpicks = 3
 
 	for level in range(1, 5):
 		print("=" * 70)

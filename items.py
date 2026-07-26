@@ -49,7 +49,7 @@ warrior_sword = Weapon("Warrior Sword", 9, "Transforms you into a true warrior."
 
 small_potion = Potion("Small Potion", 10, "Can be used to heal a small amount of health.")
 medium_potion = Potion("Medium Potion", 25, "Can be used to heal a medium amount of health.")
-big_potion = Potion("Big Potion", 40, "Can be used to heal a big amount og health.")
+big_potion = Potion("Big Potion", 40, "Can be used to heal a big amount of health.")
 max_potion = Potion("Max Potion", 100, "Can be used to heal your health to max.")
 
 wooden_chest_loot = [

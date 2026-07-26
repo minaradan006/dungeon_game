@@ -32,7 +32,7 @@ silver_chest_sprite = r"""
                 |.|.' .' - \|.'-------'.|/ - '. '.| |
                 |.|    .-  .|.| ,.|., |.|.  -.    |.|
                 \ \     `-.'|.| .'|'. |.|`.-'     / /
-                 `----------|_|-------|_|----------`
+                 `.\--------|_|-------|_|--------/.`
 """
 
 golden_chest_sprite = r"""
@@ -66,15 +66,17 @@ class Chest:
 			return False
 
 		character.lockpicks -= self.locks
-		print("You successfully opened the chest and received...\n")
 		num_items = random.choices(
-		[1, 2, 3], weights=[0.7, 0.2 + self.locks / 10, 0.1 + self.locks / 10],
-		)[0]
+				[1, 2, 3], weights=[0.7, 0.2, 0.1],
+				)[0]
+
+		print(f"You successfully opened the chest and received {num_items} items...\n")
+		time.sleep(3)
 
 		for num in range(num_items):
-			item = random.choice(self.loot, weights=[0.45, 0.35, 0.15, 0.05, 0.3, 0.35, 0.2, 0.15, 0.7, 0.3])[0]
+			item = random.choices(self.loot, weights=[0.45, 0.35, 0.15, 0.05, 0.4, 0.3, 0.15, 0.1, 0.05, 0.7, 0.3])[0]
 			print(item)
-			time.sleep(0.5)
+			time.sleep(2)
 
 			if isinstance(item, Weapon):
 				character.inventory["weapons"].append(item)
@@ -91,11 +93,11 @@ class Chest:
 						break
 
 				if not exists:
-					character.inventory["healt potions"].append(item)
+					character.inventory["health potions"].append(item)
 
 		gold = Gold()
-		character.gold += gold
-		print(f"{gold} gold\n")
+		character.gold += gold.amount
+		print(f"{gold.amount} gold\n")
 		time.sleep(0.5)
 		return True
 
@@ -112,7 +114,7 @@ def treasure(character: Character):
 	time.sleep(3)
 
 	print(textwrap.fill("Three chests stand out, aligned next to eachother near the center of the room.", 70) + "\n")
-	time.sleep(2)
+	time.sleep(3)
 
 	print(wooden_chest_sprite)
 	print(textwrap.fill("The chest on the left is made of wood and quite a bit smaller than the rest. There is one lock on it.", 70) + "\n")
@@ -127,30 +129,34 @@ def treasure(character: Character):
 	time.sleep(7)
 
 	print("You see a sign:\n")
-	time.sleep(1)
+	time.sleep(2)
 
 	print("'You must choose at most one chest out of the three.'\n")
-	time.sleep(2)
+	time.sleep(3)
 
 	while True:
 		print("What will you do?")
-		choices = ["Wooden chest", "Silver chest", "Gold chest", "Check lockpicks", "Leave"]
+		choices = ["Wooden chest", "Silver chest", "Golden chest", "Check lockpicks", "Leave"]
 		print_choices(choices)
 
 		choice = input()
+		print()
 
 		success = 0
 		if choice.lower() == "wooden chest":
 			success = wooden_chest.unlock(character)
-
-		if choice.lower() == "silver chest":
+		elif choice.lower() == "silver chest":
 			success = silver_chest.unlock(character)
-
-		if choice.lower() == "golden chest":
+		elif choice.lower() == "golden chest":
 			success = golden_chest.unlock(character)
-
-		if choice.lower() == "leave":
+		elif choice.lower() == "leave":
 			break
+		elif choice.lower() == "check lockpicks":
+			print(f"Lockpicks: {character.lockpicks}\n")
+			time.sleep(0.5)
+		else:
+			print("Invalid choice. Try again\n")
+			time.sleep(0.5)
 
 		if success:
 			break
