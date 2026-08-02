@@ -1,7 +1,7 @@
 import random
 import time
 import textwrap
-from hero import Character
+from hero import Character, Gold
 from story import print_choices
 from items import Weapon, Armour, Potion, wooden_chest_loot, silver_chest_loot, golden_chest_loot
 
@@ -95,15 +95,11 @@ class Chest:
 				if not exists:
 					character.inventory["health potions"].append(item)
 
-		gold = Gold()
+		gold = Gold(10, 50)
 		character.gold += gold.amount
 		print(f"{gold.amount} gold\n")
 		time.sleep(0.5)
 		return True
-
-class Gold:
-	def __init__(self):
-		self.amount = random.choice(range(10, 50, 1))
 
 wooden_chest = Chest("Wooden chest", wooden_chest_sprite, 1, wooden_chest_loot)
 silver_chest = Chest("Silver chest", silver_chest_sprite, 2, silver_chest_loot)

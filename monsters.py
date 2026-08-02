@@ -1,27 +1,29 @@
 import textwrap
 import time
 import random
-from hero import Character
-from monster_sprites import owl_sprite, skeleton_sprite, rat_sprite, knight_sprite, eye_sprite, axe_orc_sprite, moth_sprite,rose_assasin_sprite
+from hero import Character, Gold
+from items import Weapon, Armour, Potion
+from monster_sprites import owl_sprite, skeleton_sprite, rat_sprite, knight_sprite, eye_sprite, axe_orc_sprite, moth_sprite, rose_assasin_sprite
 from story import print_choices
 
 class Monster:
-	def __init__(self, name: str, desc: str, sprite: str, health: int, attack: int):
+	def __init__(self, name: str, desc: str, sprite: str, health: int, attack: int, loot):
 		self.name = name
 		self.desc = desc
 		self.sprite = sprite
 		self.health = health
 		self.max_health = health
 		self.attack = attack
+		self.loot = loot
 
 	def __str__(self):
 		return f"[{self.name}]: {self.desc}\nHP: {self.health}/{self.max_health}\n"
 
 	def attack_level(self, level: int):
-		self.attack = int(self.attack * (1 + level * 0.25))
+		self.attack = int(self.attack * (1 + level * 0.20))
 
 	def health_level(self, level: int):
-		self.health = int(self.health * (1 + level * 0.25))
+		self.health = int(self.health * (1 + level * 0.20))
 		self.max_health = self.health
 
 	def update_stats(self, level: int):
@@ -78,15 +80,29 @@ class Monster:
 		print(f"{self.name}'s HP dropped by {damage} points.\n")
 		time.sleep(2)
 
+wise_owl_claw = Weapon("Wise Owl Claw", 10, "Its point is so sharp you can't even see it.")
+wise_owl = Monster("The Wise Owl", "...", owl_sprite, 70, 5, wise_owl_claw)
 
-wise_owl = Monster("The Wise Owl", "...", owl_sprite, 100, 5)
-skeleton_warrior = Monster("The Skeleton Warrior", "...", skeleton_sprite, 50, 10)
-rat_king = Monster("The Rat King", "...", rat_sprite, 80, 6)
-knight = Monster("The Knight", "...", knight_sprite, 90, 7)
-eye = Monster("The Eye", "...", eye_sprite, 40, 9)
-axe_orc = Monster("The Axed Orc", "...", axe_orc_sprite, 80, 7)
-glowing_moth = Monster("The Glowing Moth", "...", moth_sprite, 60, 5)
-rose_assasin = Monster("The Rose Assassin", "...", rose_assasin_sprite, 50, 8)
+pirate_sword = Weapon("Pirate Sword", 12, "The metal blade is splattered with blood.")
+skeleton_pirate = Monster("The Skeleton Pirate", "...", skeleton_sprite, 40, 10, pirate_sword)
+
+rat_suit = Armour("Rat Suit", 11, "The furry suit is surprisingly sturdy.")
+rat_king = Monster("The Rat King", "...", rat_sprite, 50, 6, rat_suit)
+
+knight_suit = Armour("Knight Suit", 12, "Makes you look like royalty.")
+knight = Monster("The Knight", "...", knight_sprite, 70, 7, knight_suit)
+
+eye_drops = Potion("Eye Drops", 300, "Increases max health and restores health to max.")
+eye = Monster("The Eye", "...", eye_sprite, 30, 9, eye_drops)
+
+flaming_axe = Weapon("Flaming Axe", 12, "It emits a bright red glow.")
+axe_orc = Monster("The Axed Orc", "...", axe_orc_sprite, 50, 7, flaming_axe)
+
+wing_cape = Armour("Wing Cape", 10, "Makes you translucent.")
+glowing_moth = Monster("The Glowing Moth", "...", moth_sprite, 60, 5, wing_cape)
+
+rose_blade = Weapon("Rose Blade", 13, "Its handle is shaped like a delicate rose.")
+rose_assasin = Monster("The Rose Assassin", "...", rose_assasin_sprite, 60, 9, rose_blade)
 
 fight_messages = [
 	"The monster stumbles, but regains its footing.\n",
@@ -141,6 +157,12 @@ def enemy(character: Character, level: int, monster: Monster) -> bool:
 			print(monster)
 			continue
 		elif choice.lower() == "heal":
+			print("Health Potions".center(20, "-") + "\n")
+			time.sleep(0.5)
+			for item in character.inventory["health potions"]:
+				print(item)
+				time.sleep(0.5)
+			print()
 			potion_name = input("What potion do you want to use? ")
 			print()
 			character.heal(potion_name)
@@ -153,6 +175,36 @@ def enemy(character: Character, level: int, monster: Monster) -> bool:
 				print("=" * 70 + "\n")
 				print(f"You defeated {monster.name}!\n")
 				print("=" * 70 + "\n")
+				time.sleep(5)
+
+				gold = Gold(30, 60)
+				print(f"You received {gold.amount} gold!\n")
+				time.sleep(2)
+
+				item = random.choices([None, monster.loot], weights = [0.8, 0.2])[0]
+
+				if not item:
+					return True
+
+				print(f"You received: [{item.name}]!\n")
+
+				if isinstance(item, Weapon):
+					character.inventory["weapons"].append(item)
+				
+				if isinstance(item, Armour):
+					character.inventory["armour"].append(item)
+				
+				if isinstance(item, Potion):
+					exists = 0
+					for idx, potion in enumerate(character.inventory["health potions"]):
+						if item.name == potion.name:
+							potion.num += 1
+							exists = 1
+							break
+
+					if not exists:
+						character.inventory["health potions"].append(item)
+
 				return True
 
 			print("-" * 70 + "\n")

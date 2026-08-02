@@ -34,7 +34,7 @@ copper_helmet = Armour("Copper Helmet", 5, "A few scratches can be seen reflecte
 chainmail_shirt = Armour("Chainmail Shirt", 6, "A bit rusty, but still very effective against slashes.")
 copper_chestplate = Armour("Coppr Chestplate", 7, "It looks like it's made from lava.")
 copper_suit = Armour("Copper Suit", 9, "Copper covers your full body.")
-knight_armour = Armour("Knight Armour", 10, "It is very heavy, giving a menacing look to anyone who wears it")
+steel_armour = Armour("Steel Armour", 10, "It is very heavy, giving a menacing look to anyone who wears it")
 
 stick = Weapon("Stick", 1, "Loved by many dogs.")
 wooden_sword = Weapon("Wooden Sword", 2, "Pretty sharp but not very durable.")
@@ -50,7 +50,7 @@ warrior_sword = Weapon("Warrior Sword", 9, "Transforms you into a true warrior."
 small_potion = Potion("Small Potion", 10, "Can be used to heal a small amount of health.")
 medium_potion = Potion("Medium Potion", 25, "Can be used to heal a medium amount of health.")
 big_potion = Potion("Big Potion", 40, "Can be used to heal a big amount of health.")
-max_potion = Potion("Max Potion", 100, "Can be used to heal your health to max.")
+giant_potion = Potion("Giant Potion", 100, "Can be used to heal a giant amount of health.")
 
 wooden_chest_loot = [
 	leather_leggings,
@@ -84,12 +84,12 @@ golden_chest_loot = [
 	chainmail_shirt,
 	copper_chestplate,
 	copper_suit,
-	knight_armour,
+	steel_armour,
 	steel_gauntlets,
 	twin_blades,
 	bow,
 	longsword,
 	warrior_sword,
 	big_potion,
-	max_potion
+	giant_potion
 ]

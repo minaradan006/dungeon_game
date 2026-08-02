@@ -8,6 +8,7 @@ from story import show_start_screen, begin_story
 from scenarios  import scenario_1, scenario_2, scenario_3
 from monsters import enemy
 from treasure_room import treasure
+from empty_room import empty
 
 def enter_room(room: Room, character: Character, level: int):
 	print("-" * 70 + "\n")
@@ -34,6 +35,9 @@ def enter_room(room: Room, character: Character, level: int):
 
 	if room.event == "treasure":
 		treasure(character)
+
+	if room.event == "empty":
+		empty(character)
 
 	print(textwrap.fill(room.exit, 70) + "\n")
 	time.sleep(5)

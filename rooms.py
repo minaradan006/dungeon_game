@@ -1,5 +1,5 @@
 import random
-from monsters import wise_owl, skeleton_warrior, rat_king, knight, eye, axe_orc, glowing_moth, rose_assasin
+from monsters import wise_owl, skeleton_pirate, rat_king, knight, eye, axe_orc, glowing_moth, rose_assasin
 
 walls = [
 	"vines",
@@ -52,7 +52,7 @@ room_types_desc = {
 	"chamber": ["The smell of wood escapes from the brick fireplace and the forest green armchairs seem very comfortable.",
 			   "A hidden door opens behind the brick wall of the fireplace.", glowing_moth],
 	"crypt": ["From the stone coffins ivory colored bones peek out and chalky dust spills from the urns.",
-			 "A coffin with a strange carving unlocks and reveals an exit.", skeleton_warrior],
+			 "A coffin with a strange carving unlocks and reveals an exit.", skeleton_pirate],
 	"armory": ["A shining suit of armour stands proudly in the center of the room, hundreds of swords, shields, axes, daggers strewn on the floor and hung on the walls.",
 			  "The suit of armour lowers itself into the floor and reveals a ladder toward an exit.", knight],
 	"dungeon cell": ["The rusty bars don't budge when shaken. The only source of air is coming from a tiny window that you can't reach.",
