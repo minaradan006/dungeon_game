@@ -9,6 +9,16 @@ from scenarios  import scenario_1, scenario_2, scenario_3
 from monsters import enemy
 from treasure_room import treasure
 from empty_room import empty
+from trap_room import trap
+
+def fainted():
+	print(textwrap.fill("You open your eyes and see the faint sunlight streaming through the tree leaves.", 70) + "\n")
+	time.sleep(3)
+
+	print(textwrap.fill("The dungeon entrace is open, ready for you to try again.\n", 70) + "\n")
+	time.sleep(3)
+
+	return
 
 def enter_room(room: Room, character: Character, level: int):
 	print("-" * 70 + "\n")
@@ -25,19 +35,17 @@ def enter_room(room: Room, character: Character, level: int):
 
 	if room.event == "enemy":
 		if not enemy(character, level, room.monster):
-			print(textwrap.fill("You open your eyes and see the faint sunlight streaming through the tree leaves.", 70) + "\n")
-			time.sleep(3)
-
-			print(textwrap.fill("The dungeon entrace is open, ready for you to try again.\n", 70) + "\n")
-			time.sleep(3)
-
-			return
+			fainted()
 
 	if room.event == "treasure":
 		treasure(character)
 
 	if room.event == "empty":
 		empty(character)
+
+	if room.event == "trap":
+		if not trap(character):
+			fainted()
 
 	print(textwrap.fill(room.exit, 70) + "\n")
 	time.sleep(5)

@@ -80,7 +80,7 @@ class Monster:
 		print(f"{self.name}'s HP dropped by {damage} points.\n")
 		time.sleep(2)
 
-wise_owl_claw = Weapon("Wise Owl Claw", 10, "Its point is so sharp you can't even see it.")
+wise_owl_claw = Weapon("Wise Owl Claw", 11, "Its point is so sharp you can't even see it.")
 wise_owl = Monster("The Wise Owl", "...", owl_sprite, 70, 5, wise_owl_claw)
 
 pirate_sword = Weapon("Pirate Sword", 12, "The metal blade is splattered with blood.")
@@ -89,7 +89,7 @@ skeleton_pirate = Monster("The Skeleton Pirate", "...", skeleton_sprite, 40, 10,
 rat_suit = Armour("Rat Suit", 11, "The furry suit is surprisingly sturdy.")
 rat_king = Monster("The Rat King", "...", rat_sprite, 50, 6, rat_suit)
 
-knight_suit = Armour("Knight Suit", 12, "Makes you look like royalty.")
+knight_suit = Armour("Knight Suit", 13, "Makes you look like royalty.")
 knight = Monster("The Knight", "...", knight_sprite, 70, 7, knight_suit)
 
 eye_drops = Potion("Eye Drops", 300, "Increases max health and restores health to max.")
@@ -98,7 +98,7 @@ eye = Monster("The Eye", "...", eye_sprite, 30, 9, eye_drops)
 flaming_axe = Weapon("Flaming Axe", 12, "It emits a bright red glow.")
 axe_orc = Monster("The Axed Orc", "...", axe_orc_sprite, 50, 7, flaming_axe)
 
-wing_cape = Armour("Wing Cape", 10, "Makes you translucent.")
+wing_cape = Armour("Wing Cape", 12, "Makes you translucent.")
 glowing_moth = Monster("The Glowing Moth", "...", moth_sprite, 60, 5, wing_cape)
 
 rose_blade = Weapon("Rose Blade", 13, "Its handle is shaped like a delicate rose.")
