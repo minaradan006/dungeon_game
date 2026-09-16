@@ -10,6 +10,7 @@ from monsters import enemy
 from treasure_room import treasure
 from empty_room import empty
 from trap_room import trap
+from shop_room import shop
 
 def fainted():
 	print(textwrap.fill("You open your eyes and see the faint sunlight streaming through the tree leaves.", 70) + "\n")
@@ -46,6 +47,9 @@ def enter_room(room: Room, character: Character, level: int):
 	if room.event == "trap":
 		if not trap(character):
 			fainted()
+
+	if room.event == "shop":
+		shop(character)
 
 	print(textwrap.fill(room.exit, 70) + "\n")
 	time.sleep(5)
