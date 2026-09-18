@@ -21,7 +21,7 @@ def fainted():
 
 	return
 
-def enter_room(room: Room, character: Character, level: int):
+def enter_room(room: Room, character: Character, level: int, first_shop: int):
 	print("-" * 70 + "\n")
 	time.sleep(1)
 
@@ -49,7 +49,11 @@ def enter_room(room: Room, character: Character, level: int):
 			fainted()
 
 	if room.event == "shop":
-		shop(character)
+		if first_shop:
+			shop(character, True)
+		else:
+			shop(character, False)
+
 
 	print(textwrap.fill(room.exit, 70) + "\n")
 	time.sleep(5)
@@ -75,6 +79,7 @@ if __name__ == "__main__":
 	character.inventory["health potions"].append(potion)
 	character.lockpicks = 3
 
+	first_shop = True
 	for level in range(1, 5):
 		print("=" * 70)
 		print(f"LEVEL {level}".center(70))
@@ -94,6 +99,6 @@ if __name__ == "__main__":
 			elif scenario == 3:
 				room = scenario_3(character, level)
 
-			enter_room(room, character, level)
+			enter_room(room, character, level, first_shop)
 
 	print("You did it!")

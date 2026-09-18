@@ -15,7 +15,7 @@ d20 = r"""
                        ``v`'
 """
 
-def trap(character: Character):
+def trap(character: Character) -> bool:
 	print(textwrap.fill("The room seems quiet, nothing out of the ordinary.", 70) + "\n")
 	time.sleep(3)
 

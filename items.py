@@ -5,7 +5,8 @@ class Weapon:
 		self.name = name
 		self.damage = damage
 		self.desc = desc
-		self.price = price
+		self.sell_price = price
+		self.buy_price = price * 2
 
 	def __str__(self):
 		return f"[{self.name}] (+{self.damage} ATK): {self.desc}"
@@ -15,7 +16,8 @@ class Armour:
 		self.name = name
 		self.protection = protection
 		self.desc = desc
-		self.price = price
+		self.sell_price = price
+		self.buy_price = price * 2
 
 	def __str__(self):
 		return f"[{self.name}] (+{self.protection} DEF): {self.desc}"
@@ -26,7 +28,8 @@ class Potion:
 		self.num = 1
 		self.points = points
 		self.desc = desc
-		self.price = price
+		self.sell_price = price
+		self.buy_price = price * 2
 
 	def __str__(self):
 		return f"{self.num} x [{self.name}] (+{self.points} HP): {self.desc}"
@@ -54,14 +57,6 @@ small_potion = Potion("Small Potion", 10, "Can be used to heal a small amount of
 medium_potion = Potion("Medium Potion", 25, "Can be used to heal a medium amount of health.", 10)
 big_potion = Potion("Big Potion", 40, "Can be used to heal a big amount of health.", 20)
 giant_potion = Potion("Giant Potion", 100, "Can be used to heal a giant amount of health.", 40)
-
-all_loot = [
-	leather_leggings, wooden_chestplate, copper_helmet, chainmail_shirt,
-	copper_chestplate, copper_suit, steel_armour, stick, wooden_sword,
-	lance, silver_dagger, bone_spear, steel_gauntlets, twin_blades, bow,
-	longsword, warrior_sword, small_potion, medium_potion, big_potion,
-	giant_potion
-]
 
 wooden_chest_loot = [
 	leather_leggings,
