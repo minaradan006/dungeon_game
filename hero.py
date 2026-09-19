@@ -36,7 +36,7 @@ class Character:
 	def heal(self, potion_name):
 		for idx, potion in enumerate(self.inventory["health potions"]):
 			if potion.name.lower() == potion_name.lower():
-				if potion_name.lower() == "Eye Drops":
+				if potion_name.lower() == "crystal tears":
 					self.max_health += 30
 					print("Your max health has been increased by 30 points!\n")
 

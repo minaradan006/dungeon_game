@@ -80,28 +80,28 @@ class Monster:
 		print(f"{self.name}'s HP dropped by {damage} points.\n")
 		time.sleep(2)
 
-wise_owl_claw = Weapon("Wise Owl Claw", 11, "Its point is so sharp you can't even see it.")
+wise_owl_claw = Weapon("Wise Owl Claw", 11, "Its point is so sharp you can't even see it.", 40)
 wise_owl = Monster("The Wise Owl", "...", owl_sprite, 50, 5, wise_owl_claw)
 
-pirate_sword = Weapon("Pirate Sword", 12, "The metal blade is splattered with blood.")
-skeleton_pirate = Monster("The Skeleton Pirate", "...", skeleton_sprite, 40, 8, pirate_sword)
+pirate_sword = Weapon("Pirate Sword", 12, "The metal blade is splattered with blood.", 45)
+skeleton_pirate = Monster("The Skeleton Pirate", "...", skeleton_sprite, 50, 8, pirate_sword)
 
-rat_suit = Armour("Rat Suit", 11, "The furry suit is surprisingly sturdy.")
+rat_suit = Armour("Rat Suit", 11, "The furry suit is surprisingly sturdy.", 40)
 rat_king = Monster("The Rat King", "...", rat_sprite, 50, 6, rat_suit)
 
-knight_suit = Armour("Knight Suit", 13, "Makes you look like royalty.")
+knight_suit = Armour("Knight Suit", 13, "Makes you look like royalty.", 45)
 knight = Monster("The Knight", "...", knight_sprite, 55, 6, knight_suit)
 
-eye_drops = Potion("Eye Drops", 300, "Increases max health and restores health to max.")
-eye = Monster("The Eye", "...", eye_sprite, 30, 9, eye_drops)
+crystal_tears = Potion("Crystal Tears", 999, "Increases max health and restores health to max.", 50)
+eye = Monster("The Eye", "...", eye_sprite, 45, 9, crystal_tears)
 
-flaming_axe = Weapon("Flaming Axe", 12, "It emits a bright red glow.")
-axe_orc = Monster("The Axed Orc", "...", axe_orc_sprite, 50, 7, flaming_axe)
+flaming_axe = Weapon("Flaming Axe", 12, "It emits a bright red glow.", 45)
+axe_orc = Monster("The Axed Orc", "...", axe_orc_sprite, 55, 7, flaming_axe)
 
-wing_cape = Armour("Wing Cape", 12, "Makes you translucent.")
-glowing_moth = Monster("The Glowing Moth", "...", moth_sprite, 40, 5, wing_cape)
+wing_cloak = Armour("Wing Cloak", 12, "Makes you translucent.", 45)
+glowing_moth = Monster("The Glowing Moth", "...", moth_sprite, 40, 5, wing_cloak)
 
-rose_blade = Weapon("Rose Blade", 13, "Its handle is shaped like a delicate rose.")
+rose_blade = Weapon("Rose Blade", 13, "Its handle is shaped like a delicate rose.", 55)
 rose_assasin = Monster("The Rose Assassin", "...", rose_assasin_sprite, 55, 7, rose_blade)
 
 fight_messages = [
@@ -184,6 +184,9 @@ def enemy(character: Character, level: int, monster: Monster) -> bool:
 				item = random.choices([None, monster.loot], weights = [0.9, 0.1])[0]
 
 				if not item:
+					print("The monster scurried away before you could catch it.\n")
+					time.sleep(3)
+
 					return True
 
 				print(f"You received: [{item.name}]!\n")
@@ -204,6 +207,9 @@ def enemy(character: Character, level: int, monster: Monster) -> bool:
 
 					if not exists:
 						character.inventory["health potions"].append(item)
+
+				print("The monster scurried away before you could catch it.\n")
+				time.sleep(3)
 
 				return True
 
