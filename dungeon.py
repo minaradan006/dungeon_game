@@ -6,7 +6,7 @@ from items import Weapon, Armour, Potion
 from rooms import Room
 from story import show_start_screen, begin_story
 from scenarios  import scenario_1, scenario_2, scenario_3
-from monsters import enemy
+from enemy_room import enemy
 from treasure_room import treasure
 from empty_room import empty
 from trap_room import trap
