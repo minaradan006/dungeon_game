@@ -181,7 +181,7 @@ def enemy(character: Character, level: int, monster: Monster) -> bool:
 				print(f"You received {gold.amount} gold!\n")
 				time.sleep(2)
 
-				item = random.choices([None, monster.loot], weights = [0.8, 0.2])[0]
+				item = random.choices([None, monster.loot], weights = [0.9, 0.1])[0]
 
 				if not item:
 					return True

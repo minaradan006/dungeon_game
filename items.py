@@ -99,3 +99,33 @@ golden_chest_loot = [
 	big_potion,
 	giant_potion
 ]
+
+all_armour = [
+	leather_leggings,
+	wooden_chestplate,
+	copper_helmet,
+	chainmail_shirt,
+	copper_chestplate,
+	copper_suit,
+	steel_armour
+]
+
+all_weapons = [
+	stick,
+	wooden_sword,
+	lance,
+	silver_dagger,
+	bone_spear,
+	steel_gauntlets,
+	twin_blades,
+	bow,
+	longsword,
+	warrior_sword
+]
+
+all_potions = [
+	small_potion,
+	medium_potion,
+	big_potion,
+	giant_potion
+]
