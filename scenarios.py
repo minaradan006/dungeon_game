@@ -6,8 +6,44 @@ from rooms import Room
 from rooms import walls, room_adjectives
 from story import print_choices
 
+def print_weapons(character: Character):
+	print("Weapons".center(20, "-") + "\n")
+	time.sleep(0.5)
+
+	for item in character.inventory["weapons"]:
+		print(item)
+		time.sleep(0.5)
+
+	print()
+
+def print_armour(character: Character):
+	print("Armour".center(20, "-") + "\n")
+	time.sleep(0.5)
+
+	for item in character.inventory["armour"]:
+		print(item)
+		time.sleep(0.5)
+
+	print()
+
+def print_potions(character: Character):
+	print("Health Potions".center(20, "-") + "\n")
+	time.sleep(0.5)
+
+	for item in character.inventory["health potions"]:
+		print(item)
+		time.sleep(0.5)
+
+	print()
+
+def print_inventory(character: Character):
+	print_weapons(character)
+	print_armour(character)
+	print_potions(character)
+
 def inventory(character: Character):
 	print("INVENTORY".center(40, "=") + "\n")
+	print_inventory(character)
 
 	while(True):
 		print("What will you do?")
@@ -19,34 +55,21 @@ def inventory(character: Character):
 		print()
 
 		if choice.lower() == "equip weapon":
-			print("Weapons".center(20, "-") + "\n")
-			time.sleep(0.5)
-			for item in character.inventory["weapons"]:
-				print(item)
-				time.sleep(0.5)
-			print()
+			print_weapons(character)
 
 			weapon_name = input("What weapon do you want to equip? ")
 			print()
+
 			character.equip_weapon(weapon_name)
 		elif choice.lower() == "equip armour":
-			print("Armour".center(20, "-") + "\n")
-			time.sleep(0.5)
-			for item in character.inventory["armour"]:
-				print(item)
-				time.sleep(0.5)
-			print()
+			print_armour(character)
 
 			armour_name = input("What armour do you want to equip? ")
 			print()
+
 			character.equip_armour(armour_name)
 		elif choice.lower() == "heal":
-			print("Health Potions".center(20, "-") + "\n")
-			time.sleep(0.5)
-			for item in character.inventory["health potions"]:
-				print(item)
-				time.sleep(0.5)
-			print()
+			print_potions(character)
 
 			potion_name = input("What potion do you want to use? ")
 			print()
