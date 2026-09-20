@@ -1,6 +1,6 @@
 import time
 import random
-from items import Weapon, Armour
+from items import Weapon, Armour, Potion
 
 class Character:
 	def __init__(self, name: str, attack: int, defense: int):
@@ -70,7 +70,7 @@ class Character:
 				old_attack = self.equipped["weapon"].damage
 				self.equipped["weapon"] = weapon
 
-				print(f"Equipped {weapon_name}: ", end="")
+				print(f"Equipped {weapon.name}: ", end="")
 
 				if old_attack <= weapon.damage:
 					print(f"+{weapon.damage - old_attack} ATK.\n")
@@ -94,7 +94,7 @@ class Character:
 				old_defense = self.equipped["armour"].protection
 				self.equipped["armour"] = armour
 
-				print(f"Equipped {armour_name}: ", end="")
+				print(f"Equipped {armour.name}: ", end="")
 
 				if old_defense <= armour.protection:
 					print(f"+{armour.protection - old_defense} DEF.\n")
@@ -117,6 +117,24 @@ class Character:
 			base_defense = self.defense
 			armour_bonus = self.equipped["armour"].protection
 			return base_defense + armour_bonus
+
+	def receive_item(self, item):
+		if isinstance(item, Weapon):
+			self.inventory["weapons"].append(item)
+
+		if isinstance(item, Armour):
+			self.inventory["armour"].append(item)
+
+		if isinstance(item, Potion):
+			exists = 0
+			for idx, potion in enumerate(self.inventory["health potions"]):
+				if item.name == potion.name:
+					potion.num += 1
+					exists = 1
+					break
+
+			if not exists:
+				self.inventory["health potions"].append(item)
 
 class Gold:
 	def __init__(self, start, end):

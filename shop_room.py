@@ -3,9 +3,9 @@ import time
 import textwrap
 from hero import Character
 from story import print_choices
-from items import all_weapons, all_armour, all_potions
+from items import Potion,  all_weapons, all_armour, all_potions
 
-class Animal:
+class Shopkeeper:
 	def __init__(self, name: str, species: str, shop_name: str, sprite: str, desc: str, stock: list, stock_weights: list, dialogue: list):
 		self.name = name
 		self.species = species
@@ -13,6 +13,7 @@ class Animal:
 		self.sprite = sprite
 		self.desc = desc
 		self.stock = random.choices(stock, weights=stock_weights, k=3)
+		self.price_multiplier = random.choice(range(50, 200, 25))
 		self.dialogue = dialogue
 
 	def talk(self):
@@ -20,19 +21,68 @@ class Animal:
 			print(textwrap.fill(f"{self.name}: {line}", 70) + "\n")
 			time.sleep(5)
 
+	def buy(self, character: Character, item_buy: str):
+		for idx, item in enumerate(self.stock):
+			if isinstance(item, str) == False:
+				if item.name.lower() == item_buy:
+					price = (item.buy_price * self.price_multiplier) // 100
+					if price > character.gold:
+						print("You don't have enough gold for this item...\n")
+						time.sleep(2)
+						return
+					else:
+						character.gold -= price
+						character.receive_item(item)
+						self.stock[idx] = "SOLD OUT"
+
+						print(f"\n-{price} gold")
+						time.sleep(1)
+						print("Item purchased successfully!\n")
+						time.sleep(1)
+						print(f"{self.name}: Thank you for the purchase!\n")
+						time.sleep(1)
+						return
+
+		print("There's no item with this name for sale.\n")
+		time.sleep(2)
+
+	def sell(self, character: Character, item_sell: str, category: str):
+		for idx, item in enumerate(character.inventory[category]):
+			if item.name.lower() == item_sell:
+				price = (item.sell_price * self.price_multiplier) // 100
+				character.gold += price
+				if isinstance(item, Potion):
+					item.num -= 1
+					if item.num == 0:
+						del character.inventory[category][idx]
+				else:
+					del character.inventory[category][idx]
+
+				print(f"+{price} gold\n")
+				time.sleep(1)
+				print("Item sold successfully!\n")
+				time.sleep(1)
+				print(f"{self.name}: Thank you for the item!\n")
+				time.sleep(1)
+				return
+
+		print("There's no item with this name in your inventory.\n")
+		time.sleep(2)
+
+
 lila_sprite = r"""
  /_/___/__________/_____________/______________\_____________\_____________\_\
 /_/____/_________/_____________/________________\______________\____________\_\
-|  |                                                  ||                 |||  |
-|  |                                                  ||                 |||  |
-|  |      ,\/~~\_                       _/~~~\        ||                 |||  |
-|  |      |---, `\_    ___,--~ \__   /~' ,,'' |       ||                 |||  |
-|  |      `\_|\ _\`    ___-~~~\  ,_   '\_/' /'        ||_________________|||  |
-|  |        \,_|   , '~,/'\ ,_  `\_\ \_  \_\'         |                   ||  |
-|  |      /@@ _/  /' ./',            \       `@,      |    Lila's Shop    ||  |
-|  |      @@ '   |  ___/ / /\ \ '\__ _`~|, `, @@      |      of Sharp     ||  |
-|  |    /@@ /  | | ',_-_  |    | ,,_-_,  |  | `@@,    |      Objects      ||  |
-|  |     @@@ \ | | \ \_O`\ |   / / O_/' | \  \@@@     |___________________||  |
+|  |                                                ||                 ||  |  |
+|  |                                                ||                 ||  |  |
+|  |      ,\/~~\_                       _/~~~\      ||                 ||  |  |
+|  |      |---, `\_    ___,--~ \__   /~' ,,'' |     ||                 ||  |  |
+|  |      `\_|\ _\`    ___-~~~\  ,_   '\_/' /'      ||_________________||  |  |
+|  |        \,_|   , '~,/'\ ,_  `\_\ \_  \_\'       |                   |  |  |
+|  |      /@@ _/  /' ./',            \       `@,    |    Lila's Shop    |  |  |
+|  |      @@ '   |  ___/ / /\ \ '\__ _`~|, `, @@    |      of Sharp     |  |  |
+|  |    /@@ /  | | ',_-_  |    | ,,_-_,  |  | `@@,  |      Objects      |  |  |
+|  |     @@@ \ | | \ \_O`\ |   / / O_/' | \  \@@@   |___________________|  |  |
 |  |    `@@ |   \ `\     `|     | |  _/'  /'  | @@'                        |  |
 |  |      @@ |   ~\ /--'~  | , |  \__   |   | |@@                          |  |
 |  |      @@,\     | ,,|   |___|   | `\    /',@@                           |  |
@@ -55,7 +105,7 @@ lila_dialogue = [
 	"So here's a tip from me.",
 	"You might assume that [enemy] rooms are just annoying, but think again.",
 	"From the monsters you fight you can gain some pretty awesome stuff.",
-	"For example, from [The Wise Owl] in the [library], [The Skeleton Pirate] in the [crypt], [The Axed Orc] in the [corridor] and [The Rose Assassin] in the [garden] you can get some pretty sick weapons.",
+	"For example, from [The Wise Owl] in the [library], from [The Skeleton Pirate] in the [crypt], from [The Axed Orc] in the [corridor] and from [The Rose Assassin] in the [garden] you can get some pretty sick weapons.",
 	"Don't tell them I spoke to you of this though.",
 	"I want to stay on their good side, you understand, right?"
 ]
@@ -63,15 +113,15 @@ lila_dialogue = [
 kawa_sprite = r"""
  /_/___/__________/_____________/______________\_____________\_____________\_\
 /_/____/_________/_____________/________________\______________\____________\_\
-|  |                                                  ||                 |||  |
-|  |                                                  ||                 |||  |
-|  |                                                  ||                 |||  |
-|  |             .--.              .--.               ||_________________|||  |
-|  |            : (\ ". _......_ ." /) :              |                   ||  |
-|  |             '.    `        `    .'               |    Kawa's Shop    ||  |
-|  |              /'   _        _   `\                |     of Sweet      ||  |
-|  |             /      0}    {0     \                |      Healing      ||  |
-|  |            |       /      \       |              |___________________||  |
+|  |                                                ||                 ||  |  |
+|  |                                                ||                 ||  |  |
+|  |                                                ||                 ||  |  |
+|  |             .--.              .--.             ||_________________||  |  |
+|  |            : (\ ". _......_ ." /) :            |                   |  |  |
+|  |             '.    `        `    .'             |    Kawa's Shop    |  |  |
+|  |              /'   _        _   `\              |     of Sweet      |  |  |
+|  |             /      0}    {0     \              |      Healing      |  |  |
+|  |            |       /      \       |            |___________________|  |  |
 |  |            |     /'        `\     |                                   |  |
 |  |             \   | .  .==.  . |   /                                    |  |
 |  |              '._ \.' \__/ './ _.'                                     |  |
@@ -103,15 +153,15 @@ kawa_dialogue = [
 georgianna_sprite = r"""
  /_/___/__________/_____________/______________\_____________\_____________\_\
 /_/____/_________/_____________/________________\______________\____________\_\
-|  |                                                  ||                 |||  |
-|  |                                                  ||                 |||  |
-|  |                                                  ||                 |||  |
-|  |                                                  ||_________________|||  |
-|  |               *.               .*                |                   ||  |
-|  |              "  *.           .*  "               |    Georgianna's   ||  |
-|  |             ." " "'    .    '" " ".              |   Shop of Shiny   ||  |
-|  |             '  ""  ";.":".;"  ""  '              |     Protection    ||  |
-|  |             `. "'"           "'" .`              |___________________||  |
+|  |                                                ||                 ||  |  |
+|  |                                                ||                 ||  |  |
+|  |                                                ||                 ||  |  |
+|  |                                                ||_________________||  |  |
+|  |               *.               .*              |                   |  |  |
+|  |              "  *.           .*  "             |    Georgianna's   |  |  |
+|  |             ." " "'    .    '" " ".            |   Shop of Shiny   |  |  |
+|  |             '  ""  ";.":".;"  ""  '            |     Protection    |  |  |
+|  |             `. "'"           "'" .`            |___________________|  |  |
 |  |              .*'' ..       .. ''*.                                    |  |
 |  |           ..-       `     `       -..                                 |  |
 |  |          --_*   '---.     .---'   *_--                                |  |
@@ -140,11 +190,9 @@ georgianna_dialogue = [
 	"I'd say it's pretty worth it, wouldn't you?"
 ]
 
-lila = Animal("Lila", "tiger", "Lila's Shop of Sharp Objects", lila_sprite, lila_desc, all_weapons, weapon_weights, lila_dialogue)
-kawa = Animal("Kawa", "bear", "Kawa's Shop of Sweet Healing", kawa_sprite, kawa_desc, all_potions, potion_weigths, kawa_dialogue)
-georgianna = Animal("Georgianna", "fox", "Georgianna's Shop of Shiny Protection", georgianna_sprite, georgianna_desc, all_armour, armour_weights, georgianna_dialogue)
-
-person = Character("Mina", 10, 10)
+lila = Shopkeeper("Lila", "tiger", "Lila's Shop of Sharp Objects", lila_sprite, lila_desc, all_weapons, weapon_weights, lila_dialogue)
+kawa = Shopkeeper("Kawa", "bear", "Kawa's Shop of Sweet Healing", kawa_sprite, kawa_desc, all_potions, potion_weigths, kawa_dialogue)
+georgianna = Shopkeeper("Georgianna", "fox", "Georgianna's Shop of Shiny Protection", georgianna_sprite, georgianna_desc, all_armour, armour_weights, georgianna_dialogue)
 
 def shop(character: Character, first_shop: bool):
 	print(textwrap.fill("From the back corner of the room, you hear jazz music playing.", 70) + "\n")
@@ -165,34 +213,35 @@ def shop(character: Character, first_shop: bool):
 	print("You try to focus on the face of the speaker.\n")
 	time.sleep(3)
 
-	animal = random.choice([lila, kawa, georgianna])
+	shopkeeper = random.choice([lila, kawa, georgianna])
 
 	if first_shop:
-		print(f"Standing behind a shop booth you see a...{animal.species}?\n")
+		print(f"Standing behind a shop booth you see a...{shopkeeper.species}?\n")
 		time.sleep(3)
 
-		print(animal.sprite)
+		print(shopkeeper.sprite)
 		time.sleep(5)
 
-		print(f"{animal.name}: I'm {animal.name} and this is {animal.shop_name}!\n")
+		print(f"{shopkeeper.name}: I'm {shopkeeper.name} and this is {shopkeeper.shop_name}!\n")
 		time.sleep(3)
 
-		print(textwrap.fill(f"{animal.name}: {animal.desc}", 70) + "\n")
+		print(textwrap.fill(f"{shopkeeper.name}: {shopkeeper.desc}", 70) + "\n")
 		time.sleep(5)
 	else:
-		print(f"{character.name}: Oh, hi {animal.name}!\n")
+		print(f"{character.name}: Oh, hi {shopkeeper.name}!\n")
 
-	print(f"{animal.name}: Here is what I have for you at the moment:\n")
+	print(f"{shopkeeper.name}: Here is what I have for you at the moment:\n")
 	time.sleep(3)
 
-	for item in animal.stock:
-		print(item)
+	for item in shopkeeper.stock:
+		price = (item.buy_price * shopkeeper.price_multiplier) // 100
+		print(f"[{item.name}] : {price} gold")
 		time.sleep(1)
 
 	print()
 
 	while True:
-		print("What will you do?\n")
+		print("What will you do?")
 		time.sleep(2)
 
 		choices = ["Buy", "Sell", "Talk", "Leave"]
@@ -202,17 +251,71 @@ def shop(character: Character, first_shop: bool):
 		print()
 
 		if choice.lower() == "buy":
-			pass
+			for item in shopkeeper.stock:
+				if isinstance(item, str) == True:
+					print(item)
+					time.sleep(1)
+					continue
+
+				price = (item.buy_price * shopkeeper.price_multiplier) // 100
+				print(f"[{item.name}] : {price} gold")
+				time.sleep(1)
+
+			print("\n[Back]\n")
+
+			print("What do you want to buy?")
+			time.sleep(1)
+
+			item_buy = input().lower()
+
+			if item_buy == "back":
+				continue
+
+			shopkeeper.buy(character, item_buy)
 		elif choice.lower() == "sell":
-			pass
+			print("What type of item would you like to sell?")
+			time.sleep(1)
+
+			choices = ["Weapons", "Armour", "Health Potions", "Back"]
+			print_choices(choices)
+
+			category = input().lower()
+			print()
+
+			if category == "back":
+				continue
+
+			if category not in ["weapons", "armour", "health potions"]:
+				print("Not a valid category.\n")
+				time.sleep(1)
+				continue
+
+			for item in character.inventory[category]:
+				price = item.sell_price * shopkeeper.price_multiplier // 100
+				print(f"[{item.name}] : {price} gold")
+				time.sleep(1)
+			print("[Back]\n")
+
+			print("What do you want to sell?")
+			time.sleep(1)
+
+			item_sell = input().lower()
+
+			if item_sell == "back":
+				continue
+
+			shopkeeper.sell(character, item_sell, category)
 		elif choice.lower() == "talk":
-			print(animal.sprite)
-			animal.talk()
+			print(shopkeeper.sprite)
+			shopkeeper.talk()
 		elif choice.lower() == "leave":
-			print(f"{animal.name}: See you next time!\n")
+			print(f"{shopkeeper.name}: Let me just open the next room for you...\n")
 			time.sleep(2)
 
-			print(f"{character.name}: Bye, {animal.name}!\n")
+			print(f"{shopkeeper.name}: See you next time!\n")
+			time.sleep(2)
+
+			print(f"{character.name}: Bye, {shopkeeper.name}!\n")
 			time.sleep(2)
 
 			return
@@ -222,5 +325,3 @@ def shop(character: Character, first_shop: bool):
 			continue
 
 		print(70 * "-" + "\n")
-
-shop(person, True)

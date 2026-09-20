@@ -78,22 +78,7 @@ class Chest:
 			print(item)
 			time.sleep(2)
 
-			if isinstance(item, Weapon):
-				character.inventory["weapons"].append(item)
-
-			if isinstance(item, Armour):
-				character.inventory["armour"].append(item)
-
-			if isinstance(item, Potion):
-				exists = 0
-				for idx, potion in enumerate(character.inventory["health potions"]):
-					if item.name == potion.name:
-						potion.num += 1
-						exists = 1
-						break
-
-				if not exists:
-					character.inventory["health potions"].append(item)
+			character.receive_item(item)
 
 		gold = Gold(10, 50)
 		character.gold += gold.amount

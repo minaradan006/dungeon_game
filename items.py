@@ -38,7 +38,7 @@ leather_leggings = Armour("Leather Leggings", 2, "Very stylish, but not very use
 wooden_chestplate = Armour("Wooden Chestplate", 3, "A fire hazard.", 7)
 copper_helmet = Armour("Copper Helmet", 5, "A few scratches can be seen reflected in the light.", 10)
 chainmail_shirt = Armour("Chainmail Shirt", 6, "A bit rusty, but still very effective against slashes.", 12)
-copper_chestplate = Armour("Coppr Chestplate", 7, "It looks like it's made from lava.", 15)
+copper_chestplate = Armour("Copper Chestplate", 7, "It looks like it's made from lava.", 15)
 copper_suit = Armour("Copper Suit", 9, "Copper covers your full body.", 20)
 steel_armour = Armour("Steel Armour", 10, "It is very heavy, giving a menacing look to anyone who wears it", 25)
 

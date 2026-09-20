@@ -50,6 +50,7 @@ def trap(character: Character) -> bool:
 	roll = random.choice(range(1, 20))
 
 	print(roll)
+	time.sleep(3)
 
 	if roll >= 10:
 		print("You are safe!\n")

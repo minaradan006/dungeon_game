@@ -70,13 +70,14 @@ if __name__ == "__main__":
 	name, attack, defense = begin_story()
 	character = Character(name, attack, defense)
 
-	character.inventory["weapons"].append(Weapon("Longsword", 5, "Heavy and slow, but sturdy."))
-	armour = Armour("Copper Helmet", 3, "A few scratches can be seen reflected in the light.")
-	weapon = Weapon("Silver Dagger", 2, "Small but very agile.")
-	potion = Potion("Small Potion", 10, "Can be used to heal a small amount of health")
-	character.inventory["weapons"].append(weapon)
-	character.inventory["armour"].append(armour)
-	character.inventory["health potions"].append(potion)
+	longsword = Weapon("Longsword", 8, "Heavy and slow, but sturdy.", 20)
+	character.inventory["weapons"].append(longsword)
+	copper_helmet = Armour("Copper Helmet", 5, "A few scratches can be seen reflected in the light.", 10)
+	silver_dagger = Weapon("Silver Dagger", 4, "Small but very agile.", 7)
+	small_potion = Potion("Small Potion", 10, "Can be used to heal a small amount of health.", 5)
+	character.inventory["weapons"].append(silver_dagger)
+	character.inventory["armour"].append(copper_helmet)
+	character.inventory["health potions"].append(small_potion)
 	character.lockpicks = 3
 
 	first_shop = True

@@ -191,22 +191,10 @@ def enemy(character: Character, level: int, monster: Monster) -> bool:
 
 				print(f"You received: [{item.name}]!\n")
 
-				if isinstance(item, Weapon):
-					character.inventory["weapons"].append(item)
-				
-				if isinstance(item, Armour):
-					character.inventory["armour"].append(item)
-				
-				if isinstance(item, Potion):
-					exists = 0
-					for idx, potion in enumerate(character.inventory["health potions"]):
-						if item.name == potion.name:
-							potion.num += 1
-							exists = 1
-							break
+				character.receive_item(item)
 
-					if not exists:
-						character.inventory["health potions"].append(item)
+				print("The monster scurried away before you could catch it.\n")
+				time.sleep(3)
 
 				print("The monster scurried away before you could catch it.\n")
 				time.sleep(3)
