@@ -159,12 +159,19 @@ def enemy(character: Character, level: int, monster: Monster) -> bool:
 		elif choice.lower() == "heal":
 			print("Health Potions".center(20, "-") + "\n")
 			time.sleep(0.5)
+
 			for item in character.inventory["health potions"]:
 				print(item)
 				time.sleep(0.5)
-			print()
+			print("[Back]\n")
+			time.sleep(0.5)
+
 			potion_name = input("What potion do you want to use? ")
 			print()
+
+			if potion_name.lower() == "back":
+				continue
+
 			character.heal(potion_name)
 		elif choice.lower() == "attack":
 			print("You decide to attack the monster.\n")

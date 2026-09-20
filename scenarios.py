@@ -14,8 +14,6 @@ def print_weapons(character: Character):
 		print(item)
 		time.sleep(0.5)
 
-	print()
-
 def print_armour(character: Character):
 	print("Armour".center(20, "-") + "\n")
 	time.sleep(0.5)
@@ -24,8 +22,6 @@ def print_armour(character: Character):
 		print(item)
 		time.sleep(0.5)
 
-	print()
-
 def print_potions(character: Character):
 	print("Health Potions".center(20, "-") + "\n")
 	time.sleep(0.5)
@@ -33,8 +29,6 @@ def print_potions(character: Character):
 	for item in character.inventory["health potions"]:
 		print(item)
 		time.sleep(0.5)
-
-	print()
 
 def print_inventory(character: Character):
 	print_weapons(character)
@@ -56,23 +50,39 @@ def inventory(character: Character):
 
 		if choice.lower() == "equip weapon":
 			print_weapons(character)
+			print("[Back]\n")
+			time.sleep(0.5)
 
 			weapon_name = input("What weapon do you want to equip? ")
 			print()
 
+			if weapon_name.lower() == "back":
+				continue
+
 			character.equip_weapon(weapon_name)
 		elif choice.lower() == "equip armour":
 			print_armour(character)
+			print("[Back]\n")
+			time.sleep(0.5)
 
 			armour_name = input("What armour do you want to equip? ")
 			print()
 
+			if armour_name.lower() == "back":
+				continue
+
 			character.equip_armour(armour_name)
 		elif choice.lower() == "heal":
 			print_potions(character)
+			print("[Back]\n")
+			time.sleep(0.5)
 
 			potion_name = input("What potion do you want to use? ")
 			print()
+
+			if potion_name.lower() == "back":
+				continue
+
 			character.heal(potion_name)
 		elif choice.lower() == "close inventory":
 			break

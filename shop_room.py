@@ -251,60 +251,63 @@ def shop(character: Character, first_shop: bool):
 		print()
 
 		if choice.lower() == "buy":
-			for item in shopkeeper.stock:
-				if isinstance(item, str) == True:
-					print(item)
+			while True:
+				for item in shopkeeper.stock:
+					if isinstance(item, str) == True:
+						print(item)
+						time.sleep(1)
+						continue
+
+					price = (item.buy_price * shopkeeper.price_multiplier) // 100
+					print(f"[{item.name}] : {price} gold")
+					time.sleep(1)
+
+				print("[Back]\n")
+
+				print("What do you want to buy?")
+				time.sleep(1)
+
+				item_buy = input().lower()
+
+				if item_buy == "back":
+					break
+
+				shopkeeper.buy(character, item_buy)
+		elif choice.lower() == "sell":
+			while True:
+				print("What type of item would you like to sell?")
+				time.sleep(1)
+
+				choices = ["Weapons", "Armour", "Health Potions", "Back"]
+				print_choices(choices)
+
+				category = input().lower()
+				print()
+
+				if category == "back":
+					break
+
+				if category not in ["weapons", "armour", "health potions"]:
+					print("Not a valid category.\n")
 					time.sleep(1)
 					continue
+				while True:
+					for item in character.inventory[category]:
+						price = item.sell_price * shopkeeper.price_multiplier // 100
+						print(f"[{item.name}] : {price} gold")
+						time.sleep(1)
+					print("[Back]\n")
 
-				price = (item.buy_price * shopkeeper.price_multiplier) // 100
-				print(f"[{item.name}] : {price} gold")
-				time.sleep(1)
+					print("What do you want to sell?")
+					time.sleep(1)
 
-			print("\n[Back]\n")
+					item_sell = input().lower()
+					print()
 
-			print("What do you want to buy?")
-			time.sleep(1)
+					if item_sell == "back":
+						break
 
-			item_buy = input().lower()
-
-			if item_buy == "back":
-				continue
-
-			shopkeeper.buy(character, item_buy)
-		elif choice.lower() == "sell":
-			print("What type of item would you like to sell?")
-			time.sleep(1)
-
-			choices = ["Weapons", "Armour", "Health Potions", "Back"]
-			print_choices(choices)
-
-			category = input().lower()
-			print()
-
-			if category == "back":
-				continue
-
-			if category not in ["weapons", "armour", "health potions"]:
-				print("Not a valid category.\n")
-				time.sleep(1)
-				continue
-
-			for item in character.inventory[category]:
-				price = item.sell_price * shopkeeper.price_multiplier // 100
-				print(f"[{item.name}] : {price} gold")
-				time.sleep(1)
-			print("[Back]\n")
-
-			print("What do you want to sell?")
-			time.sleep(1)
-
-			item_sell = input().lower()
-
-			if item_sell == "back":
-				continue
-
-			shopkeeper.sell(character, item_sell, category)
+					shopkeeper.sell(character, item_sell, category)
 		elif choice.lower() == "talk":
 			print(shopkeeper.sprite)
 			shopkeeper.talk()
@@ -325,3 +328,8 @@ def shop(character: Character, first_shop: bool):
 			continue
 
 		print(70 * "-" + "\n")
+
+person = Character("Mina", 10, 10)
+person.gold = 100
+
+shop(person, 1)

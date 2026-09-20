@@ -61,13 +61,17 @@ class Character:
 
 
 	def equip_weapon(self, weapon_name):
-		found_weapon = None
+		found_weapon = False
+		old_attack = 0
 
-		for weapon in self.inventory['weapons']:
+		for idx, weapon in enumerate(self.inventory['weapons']):
 			if weapon.name.lower() == weapon_name.lower():
-				found_weapon = weapon
+				found_weapon = True
 
-				old_attack = self.equipped["weapon"].damage
+				if self.equipped["weapon"].name:
+					self.inventory["weapons"].append(self.equipped["weapon"])
+					old_attack = self.equipped["weapon"].damage
+
 				self.equipped["weapon"] = weapon
 
 				print(f"Equipped {weapon.name}: ", end="")
@@ -78,6 +82,7 @@ class Character:
 					print(f"{weapon.damage - old_attack} ATK.\n")
 
 				time.sleep(0.5)
+				del self.inventory["weapons"][idx]
 				break
 
 		if not found_weapon:
@@ -85,13 +90,17 @@ class Character:
 			time.sleep(0.5)
 
 	def equip_armour(self, armour_name):
-		found_armour = None
+		found_armour = False
+		old_defense = 0
 		
-		for armour in self.inventory['armour']:
+		for idx, armour in enumerate(self.inventory['armour']):
 			if armour.name.lower() == armour_name.lower():
-				found_armour = armour
+				found_armour = True
 
-				old_defense = self.equipped["armour"].protection
+				if self.equipped["armour"].name:
+					self.inventory["armour"].append(self.equipped["armour"])
+					old_defense = self.equipped["armour"].protection
+
 				self.equipped["armour"] = armour
 
 				print(f"Equipped {armour.name}: ", end="")
@@ -102,6 +111,7 @@ class Character:
 					print(f"{armour.protection - old_defense} DEF.\n")
 
 				time.sleep(0.5)
+				del self.inventory["armour"][idx]
 				break
 
 		if not found_armour:
