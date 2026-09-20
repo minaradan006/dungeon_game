@@ -4,6 +4,7 @@ import textwrap
 from hero import Character
 from story import print_choices
 from items import Potion,  all_weapons, all_armour, all_potions
+from scenarios import print_inventory
 
 class Shopkeeper:
 	def __init__(self, name: str, species: str, shop_name: str, sprite: str, desc: str, stock: list, stock_weights: list, dialogue: list):
@@ -194,7 +195,7 @@ lila = Shopkeeper("Lila", "tiger", "Lila's Shop of Sharp Objects", lila_sprite, 
 kawa = Shopkeeper("Kawa", "bear", "Kawa's Shop of Sweet Healing", kawa_sprite, kawa_desc, all_potions, potion_weigths, kawa_dialogue)
 georgianna = Shopkeeper("Georgianna", "fox", "Georgianna's Shop of Shiny Protection", georgianna_sprite, georgianna_desc, all_armour, armour_weights, georgianna_dialogue)
 
-def shop(character: Character, first_shop: bool):
+def shop(character: Character, first_shop: list):
 	print(textwrap.fill("From the back corner of the room, you hear jazz music playing.", 70) + "\n")
 	time.sleep(3)
 
@@ -215,7 +216,15 @@ def shop(character: Character, first_shop: bool):
 
 	shopkeeper = random.choice([lila, kawa, georgianna])
 
-	if first_shop:
+	shop = 0
+	if shopkeeper.name == "Lila":
+		shop = 0
+	elif shopkeeper.name == "Kawa":
+		shop = 1
+	else:
+		shop = 2
+
+	if first_shop[shop]:
 		print(f"Standing behind a shop booth you see a...{shopkeeper.species}?\n")
 		time.sleep(3)
 
@@ -229,6 +238,7 @@ def shop(character: Character, first_shop: bool):
 		time.sleep(5)
 	else:
 		print(f"{character.name}: Oh, hi {shopkeeper.name}!\n")
+		time.sleep(3)
 
 	print(f"{shopkeeper.name}: Here is what I have for you at the moment:\n")
 	time.sleep(3)
@@ -244,7 +254,7 @@ def shop(character: Character, first_shop: bool):
 		print("What will you do?")
 		time.sleep(2)
 
-		choices = ["Buy", "Sell", "Talk", "Leave"]
+		choices = ["Buy", "Sell", "Check coins", "Talk", "Leave"]
 		print_choices(choices)
 
 		choice = input()
@@ -275,6 +285,7 @@ def shop(character: Character, first_shop: bool):
 				shopkeeper.buy(character, item_buy)
 		elif choice.lower() == "sell":
 			while True:
+				print_inventory(character)
 				print("What type of item would you like to sell?")
 				time.sleep(1)
 
@@ -308,6 +319,8 @@ def shop(character: Character, first_shop: bool):
 						break
 
 					shopkeeper.sell(character, item_sell, category)
+		elif choice.lower() == "check coins":
+			print(f"You have {character.gold} gold.\n")
 		elif choice.lower() == "talk":
 			print(shopkeeper.sprite)
 			shopkeeper.talk()
@@ -321,6 +334,8 @@ def shop(character: Character, first_shop: bool):
 			print(f"{character.name}: Bye, {shopkeeper.name}!\n")
 			time.sleep(2)
 
+			first_shop[shop] = False
+
 			return
 		else:
 			print("Invalid choice. Try again.\n")
@@ -328,8 +343,3 @@ def shop(character: Character, first_shop: bool):
 			continue
 
 		print(70 * "-" + "\n")
-
-person = Character("Mina", 10, 10)
-person.gold = 100
-
-shop(person, 1)

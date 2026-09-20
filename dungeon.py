@@ -21,7 +21,7 @@ def fainted():
 
 	return
 
-def enter_room(room: Room, character: Character, level: int, first_shop: int):
+def enter_room(room: Room, character: Character, level: int, first_shop: list):
 	print("-" * 70 + "\n")
 	time.sleep(1)
 
@@ -80,14 +80,14 @@ if __name__ == "__main__":
 	character.inventory["health potions"].append(small_potion)
 	character.lockpicks = 3
 
-	first_shop = True
+	first_shop = [True, True, True]
 	for level in range(1, 5):
 		print("=" * 70)
 		print(f"LEVEL {level}".center(70))
 		print("=" * 70 + "\n")
 		time.sleep(1)
 
-		mini_stages = random.choice(range(1, 2))
+		mini_stages = random.choice(range(2, 4, 1))
 
 		for mini in range(0, mini_stages):
 			scenario = random.choice([1, 2, 3])
@@ -101,5 +101,25 @@ if __name__ == "__main__":
 				room = scenario_3(character, level)
 
 			enter_room(room, character, level, first_shop)
+
+		print("You reach a torchlit corridor.\n")
+		time.sleep(2)
+
+		print(textwrap.fill("Slowly you walk towards the end and see a ladder that gets you to the next level of the dungeon", 70) + "\n")
+		time.sleep(4)
+
+		print(textwrap.fill("Before touching the wooden boards, an aura of light envelops you for a moment in a calm embrace of pure happiness.", 70) + "\n")
+		time.sleep(4)
+
+		print("Suddenly you feel at peace.\n")
+		time.sleep(2)
+
+		print("Your health has been restored.\n")
+		time.sleep(2)
+
+		character.health = character.max_health
+
+		print("You climb the ladder and go further into the dungeon.\n")
+		time.sleep(3)
 
 	print("You did it!")

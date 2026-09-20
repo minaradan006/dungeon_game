@@ -188,7 +188,7 @@ def enemy(character: Character, level: int, monster: Monster) -> bool:
 				print(f"You received {gold.amount} gold!\n")
 				time.sleep(2)
 
-				item = random.choices([None, monster.loot], weights = [0.9, 0.1])[0]
+				item = random.choice([None, monster.loot])
 
 				if not item:
 					print("The monster scurried away before you could catch it.\n")
@@ -199,9 +199,6 @@ def enemy(character: Character, level: int, monster: Monster) -> bool:
 				print(f"You received: [{item.name}]!\n")
 
 				character.receive_item(item)
-
-				print("The monster scurried away before you could catch it.\n")
-				time.sleep(3)
 
 				print("The monster scurried away before you could catch it.\n")
 				time.sleep(3)

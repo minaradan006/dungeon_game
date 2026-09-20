@@ -41,6 +41,22 @@ def trap(character: Character) -> bool:
 	print("The message doesn't continue.\n")
 	time.sleep(3)
 
+	print("Will you roll the dice?")
+	time.sleep(1)
+
+	choices = ["Yes", "No"]
+	print_choices(choices)
+
+	choice = input()
+	print()
+
+	if choice.lower() != "yes":
+		print("You try to shake the bars and scream to no avail...\n")
+		time.sleep(2)
+
+		print("There's no other way to exit but by rolling the dice.\n")
+		time.sleep(2)
+
 	print("You pick up the dice.\n")
 	time.sleep(3)
 
@@ -48,8 +64,8 @@ def trap(character: Character) -> bool:
 	time.sleep(3)
 
 	roll = random.choice(range(1, 20))
-
 	print(roll)
+	print()
 	time.sleep(3)
 
 	if roll >= 10:

@@ -32,8 +32,13 @@ def print_potions(character: Character):
 
 def print_inventory(character: Character):
 	print_weapons(character)
+	print()
+
 	print_armour(character)
+	print()
+
 	print_potions(character)
+	print()
 
 def inventory(character: Character):
 	print("INVENTORY".center(40, "=") + "\n")
