@@ -4,7 +4,7 @@ import textwrap
 from hero import Character
 from items import Weapon, Armour, Potion
 from rooms import Room
-from story import show_start_screen, begin_story
+from story import show_start_screen, begin_story, end_story
 from scenarios  import scenario_1, scenario_2, scenario_3
 from enemy_room import enemy
 from treasure_room import treasure
@@ -124,6 +124,5 @@ if __name__ == "__main__":
 		time.sleep(3)
 
 	boss(character)
-	# story
 
-	print("You did it!")
+	end_story(character)
