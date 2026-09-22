@@ -11,6 +11,7 @@ from treasure_room import treasure
 from empty_room import empty
 from trap_room import trap
 from shop_room import shop
+from boss_room import boss
 
 def fainted():
 	print(textwrap.fill("You open your eyes and see the faint sunlight streaming through the tree leaves.", 70) + "\n")
@@ -121,5 +122,8 @@ if __name__ == "__main__":
 
 		print("You climb the ladder and go further into the dungeon.\n")
 		time.sleep(3)
+
+	boss(character)
+	# story
 
 	print("You did it!")
