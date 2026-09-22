@@ -12,6 +12,7 @@ from empty_room import empty
 from trap_room import trap
 from shop_room import shop
 from boss_room import boss
+from monsters import shadow_dragon
 
 def fainted():
 	print(textwrap.fill("You open your eyes and see the faint sunlight streaming through the tree leaves.", 70) + "\n")
@@ -50,11 +51,7 @@ def enter_room(room: Room, character: Character, level: int, first_shop: list):
 			fainted()
 
 	if room.event == "shop":
-		if first_shop:
-			shop(character, True)
-		else:
-			shop(character, False)
-
+		shop(character, first_shop)
 
 	print(textwrap.fill(room.exit, 70) + "\n")
 	time.sleep(5)
@@ -71,7 +68,7 @@ if __name__ == "__main__":
 	name, attack, defense = begin_story()
 	character = Character(name, attack, defense)
 
-	longsword = Weapon("Longsword", 8, "Heavy and slow, but sturdy.", 20)
+	longsword = Weapon("Longsword", 100, "Heavy and slow, but sturdy.", 20)
 	character.inventory["weapons"].append(longsword)
 	copper_helmet = Armour("Copper Helmet", 5, "A few scratches can be seen reflected in the light.", 10)
 	silver_dagger = Weapon("Silver Dagger", 4, "Small but very agile.", 7)
@@ -88,7 +85,7 @@ if __name__ == "__main__":
 		print("=" * 70 + "\n")
 		time.sleep(1)
 
-		mini_stages = random.choice(range(2, 4, 1))
+		mini_stages = 1
 
 		for mini in range(0, mini_stages):
 			scenario = random.choice([1, 2, 3])
@@ -106,7 +103,7 @@ if __name__ == "__main__":
 		print("You reach a torchlit corridor.\n")
 		time.sleep(2)
 
-		print(textwrap.fill("Slowly you walk towards the end and see a ladder that gets you to the next level of the dungeon", 70) + "\n")
+		print(textwrap.fill("Slowly you walk towards the end and see a ladder that gets you to the next level of the dungeon.", 70) + "\n")
 		time.sleep(4)
 
 		print(textwrap.fill("Before touching the wooden boards, an aura of light envelops you for a moment in a calm embrace of pure happiness.", 70) + "\n")
@@ -123,6 +120,13 @@ if __name__ == "__main__":
 		print("You climb the ladder and go further into the dungeon.\n")
 		time.sleep(3)
 
-	boss(character)
+		print("-" * 70 + "\n")
+
+	print("=" * 70)
+	print("LEVEL 5".center(70))
+	print("=" * 70 + "\n")
+	time.sleep(1)
+
+	boss(character, shadow_dragon)
 
 	end_story(character)

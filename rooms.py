@@ -29,7 +29,7 @@ room_adjectives_desc = {
 	"musty": "There is a moldy smell lingering in the room.",
 	"echoing": "You try screaming, but you are only met with your own voice replying.",
 	"freezing": "The room is so cold that you can see your own breath and the walls appear a shade of light blue.",
-	"burning": "There are few fires that make it difficult to breathe, but they seem to be contained.",
+	"burning": "There are a few fires that make it difficult to breathe, but they seem to be contained.",
 	"crumbling": "The ceiling and walls are cracked, dust falling from them.",
 	"blood-stained": "The walls are covered in glossy, maroon streaks of blood.",
 	"bright": "There is an unnatural warm light in the room that makes everything seem calm and peaceful."

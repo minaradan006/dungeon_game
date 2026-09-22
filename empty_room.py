@@ -47,7 +47,7 @@ def empty(character: Character):
 				if gold.amount < 0:
 					if -gold.amount > character.gold:
 						gold.amount = -character.gold
-					print(f"You stumbled and lost {gold.amount} gold...\n")
+					print(f"You stumbled and lost {-gold.amount} gold...\n")
 					time.sleep(2)
 					character.gold += gold.amount
 					return

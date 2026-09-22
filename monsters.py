@@ -13,6 +13,7 @@ class Monster:
 		self.sprite = sprite
 		self.health = health
 		self.max_health = health
+		self.start_health = health
 		self.attack = attack
 		self.loot = loot
 
@@ -20,10 +21,10 @@ class Monster:
 		return f"[{self.name}]: {self.desc}\nHP: {self.health}/{self.max_health}\n"
 
 	def attack_level(self, level: int):
-		self.attack = int(self.attack * (1 + level * 0.20))
+		self.attack = int(self.attack * (1 + level * 0.10))
 
 	def health_level(self, level: int):
-		self.health = int(self.health * (1 + level * 0.20))
+		self.health = int(self.start_health * (1 + level * 0.10))
 		self.max_health = self.health
 
 	def update_stats(self, level: int):
@@ -81,27 +82,27 @@ class Monster:
 		time.sleep(2)
 
 wise_owl_claw = Weapon("Wise Owl Claw", 11, "Its point is so sharp you can't even see it.", 40)
-wise_owl = Monster("The Wise Owl", "...", owl_sprite, 50, 5, wise_owl_claw)
+wise_owl = Monster("The Wise Owl", "The guardian of the library", owl_sprite, 40, 5, wise_owl_claw)
 
 pirate_sword = Weapon("Pirate Sword", 12, "The metal blade is splattered with blood.", 45)
-skeleton_pirate = Monster("The Skeleton Pirate", "...", skeleton_sprite, 50, 8, pirate_sword)
+skeleton_pirate = Monster("The Skeleton Pirate", "The guardian of the crypt", skeleton_sprite, 45, 8, pirate_sword)
 
 rat_suit = Armour("Rat Suit", 11, "The furry suit is surprisingly sturdy.", 40)
-rat_king = Monster("The Rat King", "...", rat_sprite, 50, 6, rat_suit)
+rat_king = Monster("The Rat King", "The guardian of the dungeon cell", rat_sprite, 45, 6, rat_suit)
 
 knight_suit = Armour("Knight Suit", 13, "Makes you look like royalty.", 45)
-knight = Monster("The Knight", "...", knight_sprite, 55, 6, knight_suit)
+knight = Monster("The Knight", "The guardian of the armory", knight_sprite, 50, 6, knight_suit)
 
 crystal_tears = Potion("Crystal Tears", 999, "Increases max health and restores health to max.", 50)
-eye = Monster("The Eye", "...", eye_sprite, 45, 9, crystal_tears)
+eye = Monster("The Eye", "The guardian of the hallway", eye_sprite, 45, 9, crystal_tears)
 
 flaming_axe = Weapon("Flaming Axe", 12, "It emits a bright red glow.", 45)
-axe_orc = Monster("The Axed Orc", "...", axe_orc_sprite, 55, 7, flaming_axe)
+axe_orc = Monster("The Axed Orc", "The guardian of the corridor", axe_orc_sprite, 50, 7, flaming_axe)
 
 wing_cloak = Armour("Wing Cloak", 12, "Makes you translucent.", 45)
-glowing_moth = Monster("The Glowing Moth", "...", moth_sprite, 40, 5, wing_cloak)
+glowing_moth = Monster("The Glowing Moth", "the guardian of the chamber", moth_sprite, 45, 5, wing_cloak)
 
 rose_blade = Weapon("Rose Blade", 13, "Its handle is shaped like a delicate rose.", 55)
-rose_assasin = Monster("The Rose Assassin", "...", rose_assasin_sprite, 55, 7, rose_blade)
+rose_assasin = Monster("The Rose Assassin", "The guardian of the garden", rose_assasin_sprite, 55, 7, rose_blade)
 
-shadow_dragon = Monster("The Shadow Dragon", "...", shadow_dragon_sprite, 200, 10, None)
+shadow_dragon = Monster("The Shadow Dragon", "The guardian of the Book of Light", shadow_dragon_sprite, 200, 10, None)

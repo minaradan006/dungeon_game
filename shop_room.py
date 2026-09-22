@@ -320,7 +320,8 @@ def shop(character: Character, first_shop: list):
 
 					shopkeeper.sell(character, item_sell, category)
 		elif choice.lower() == "check coins":
-			print(f"You have {character.gold} gold.\n")
+			print(f"Gold: {character.gold}\n")
+			time.sleep(1)
 		elif choice.lower() == "talk":
 			print(shopkeeper.sprite)
 			shopkeeper.talk()

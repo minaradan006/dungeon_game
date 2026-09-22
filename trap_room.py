@@ -73,7 +73,7 @@ def trap(character: Character) -> bool:
 		time.sleep(3)
 
 	else:
-		print(textwrap.fill("Before the dread can kick in, you hear a whoosh sound coming from behind you", 70) + "\n")
+		print(textwrap.fill("Before the dread can kick in, you hear a whoosh sound coming from behind you.", 70) + "\n")
 		time.sleep(3)
 
 		print("An arrow shoots you in the shoulder and damages you 20 HP points.\n")
@@ -85,4 +85,6 @@ def trap(character: Character) -> bool:
 			return False
 
 	print("The cage walls go back up in the ceiling and you are free to leave.\n")
+	time.sleep(2)
+
 	return True

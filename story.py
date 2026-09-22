@@ -21,26 +21,28 @@ def show_start_screen():
 	 ;  .     |            ,                          '    .''-.(_).-''.    '
 	  ;  .    \           /|                             .'   '  :  '   '.
 	   \  .    '.       .'/                        \'/      '    :   '
-	    '.  '  . `'---'`.'                        -=*=-          '
-	     `'-..._____.-`                            /.\           '""")
+	    '.  '  . `'---'`.'                       -= * =-         '
+	     `'-..._____.-`                            /.\           '
+		 
+	""")
 
 	time.sleep(0.5)
 
-	eq_line = "=" * 41
-	print(eq_line.center(53))
+	eq_line = "=" * 70
+	print(eq_line.center(90))
 	time.sleep(0.5)
 
-	print("WELCOME TO THE DUNGEON OF SHADOW AND LIGHT".center(53))
+	print("WELCOME TO THE DUNGEON OF SHADOW AND LIGHT".center(90))
 	time.sleep(0.5)
 
-	print(eq_line.center(53))
+	print(eq_line.center(90))
 	time.sleep(0.5)
 
-	print("Survive 5 levels and win!".center(53))
+	print("Survive 5 levels and win!".center(90))
 	time.sleep(0.5)
 
-	line = "-" * 41
-	print(line.center(53))
+	line = "-" * 70
+	print(line.center(90))
 	time.sleep(0.5)
 
 	print("\n" * 1)
@@ -112,75 +114,105 @@ def print_choices(valid_choices: list):
 	print()
 
 def end_story(character: Character):
-	print("You did it!")
-
-	print("The Shadow Dragon stares at you without saying anything.\n")
-	time.sleep(2)
-
-	print("You can hear the sound of crikets singing and of leaves rustling.\n")
-	time.sleep(2)
-
-	print("The Shadow Dragon: Well done, adventurer...\n")
-	time.sleep(2)
-
-	print("The Shadow Dragon: You are worthy indeed...\n")
-	time.sleep(2)
-
-	print("Amara: My name is Amara.\n")
-	time.sleep(2)
-
-	print("Amara: During the battle, I sensed a light inside of you.\n")
-	time.sleep(2)
-
-	print("Amara: It's something I haven't felt in any person or being.\n")
-	time.sleep(2)
-
-	print("Amara: That is very curious...\n")
-	time.sleep(1)
-
-	print("Amara: You earned the right to the magic inside of the Book of Light.\n")
-	time.sleep(2)
-
-	print("Amara: Go ahead, take it...\n")
-	time.sleep(1)
-
-	print("Amara: Don't fret I shall know if the book is in danger.\n")
-	time.sleep(2)
-
-	print(textwrap.fill("You approach the pedestal and rest your hand on the white cover.", 70) + "\n")
-	time.sleep(1)
-
-	print("A feeling of energy but at the same time of calm flows through you.\n")
-	time.sleep(2)
-
-	print("You pick it up and put it inside of your bag.\n")
-	time.sleep(1)
-
-	print("Amara: I shall now return to my sister, The Light Dragon, Amina.\n")
-	time.sleep(2)
-
-	print(textwrap.fill(f"{character.name}: Thank you, Amara, I shall protect this with my soul.", 70) + "\n")
-	time.sleep(2)
-
-	print("Amara: I know.\n")
-	time.sleep(1)
-
-	print(textwrap.fill("Amara lifts from the ground and flies away into the night sky, resting between the moon and stars.", 70) + "\n")
-	time.sleep(2)
-
-	print("The morning sunlight bathes the room once more and exit opens between the two thrones.\n")
-	time.sleep(2)
-
-	print("It's time to go home.\n")
+	print("You did it!\n")
 	time.sleep(3)
 
+	print("The Shadow Dragon stares at you without saying anything.\n")
+	time.sleep(4)
+
+	print("You can hear the sound of crikets singing and of leaves rustling.\n")
+	time.sleep(4)
+
+	print("The Shadow Dragon: Well done, adventurer...\n")
+	time.sleep(4)
+
+	print("The Shadow Dragon: You are worthy indeed...\n")
+	time.sleep(4)
+
+	print("Amara: My real name is Amara, The Shadow Dragon.\n")
+	time.sleep(4)
+
+	print(textwrap.fill("Amara: I keep it hidden so no one finds me or my sister, The Light Dragon.\n", 70) + "\n")
+	time.sleep(5)
+
+	print("Amara: During the battle, I sensed a light inside of you.\n")
+	time.sleep(4)
+
+	print("Amara: It's something I have not felt in any being.\n")
+	time.sleep(4)
+
+	print("Amara: That is very curious...\n")
+	time.sleep(3)
+
+	print("Amara: You earned the right to the magic inside of the Book of Light.\n")
+	time.sleep(4)
+
+	print("Amara: Go ahead, take it...\n")
+	time.sleep(3)
+
+	print("Amara: Do not fret, I shall know if the book is in danger.\n")
+	time.sleep(4)
+
+	book_of_light = r"""
+                      _____________________
+                    ,'-,-,-------------.-,'|
+                    |==|/ __            \|||
+                    |  |  )_)  _  _\/_   |||
+                    |  |  )__))_))_)) \  |||
+                    |  |          _      |||
+                    |  |       _ )_      |||
+                    |  |      )_))       |||
+                    |  |                 |||
+                    |  |   )  . _ )_-)-  |||
+                    |  |  /__,))_)) ))   |||
+                    |  |        _)       |||
+                    |==|\      -=-      /|,'
+                    '--'-`-------------'-'
+"""
+
+	print(book_of_light)
+	time.sleep(0.5)
+
+	print(textwrap.fill("You approach the pedestal and rest your hand on the white cover.", 70) + "\n")
+	time.sleep(3)
+
+	print("A feeling of energy but at the same time of calm flows through you.\n")
+	time.sleep(4)
+
+	print("You pick it up and put it inside of your bag.\n")
+	time.sleep(3)
+
+	print("Amara: I shall now return to my sister, The Light Dragon...Amina.\n")
+	time.sleep(4)
+
+	print(textwrap.fill(f"{character.name}: Thank you, Amara, I shall protect this with my soul.", 70) + "\n")
+	time.sleep(4)
+
+	print("Amara: I know.\n")
+	time.sleep(3)
+
+	print(textwrap.fill("Amara lifts from the ground and flies away into the night sky, resting between the moon and stars.", 70) + "\n")
+	time.sleep(4)
+
+	print("The morning sunlight bathes the room once more and the door between the two thrones opens.\n")
+	time.sleep(4)
+
+	print("It's time to go home.\n")
+	time.sleep(5)
+
 	the_end = r"""
-						 _____ _            _____           _ 
-						|_   _| |__   ___  | ____|_ __   __| |
-						  | | | '_ \ / _ \ |  _| | '_ \ / _` |
-						  | | | | | |  __/ | |___| | | | (_| |
-						  |_| |_| |_|\___| |_____|_| |_|\__,_|
-	"""
+    ===================================================================================
+                         _____ _            _____           _ 
+                        |_   _| |__   ___  | ____|_ __   __| |
+                          | | | '_ \ / _ \ |  _| | '_ \ / _` |
+                          | | | | | |  __/ | |___| | | | (_| |
+                          |_| |_| |_|\___| |_____|_| |_|\__,_|
+
+    ===================================================================================
+"""
 
 	print(the_end)
 	time.sleep(5)
+
+	print("Thank you for playing!\n")
+	time.sleep(2)

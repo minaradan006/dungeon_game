@@ -99,6 +99,7 @@ def enemy(character: Character, level: int, monster: Monster) -> bool:
 					return True
 
 				print(f"You received: [{item.name}]!\n")
+				time.sleep(3)
 
 				character.receive_item(item)
 

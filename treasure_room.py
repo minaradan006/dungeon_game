@@ -82,7 +82,7 @@ class Chest:
 
 		gold = Gold(10, 50)
 		character.gold += gold.amount
-		print(f"{gold.amount} gold\n")
+		print(f"+{gold.amount} gold\n")
 		time.sleep(0.5)
 		return True
 
