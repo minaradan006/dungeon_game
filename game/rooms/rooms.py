@@ -1,5 +1,5 @@
 import random
-from enemy_room import wise_owl, skeleton_pirate, rat_king, knight, eye, axe_orc, glowing_moth, rose_assasin
+from game.rooms.enemy_room import wise_owl, skeleton_pirate, rat_king, knight, eye, axe_orc, glowing_moth, rose_assasin
 
 walls = [
 	"vines",

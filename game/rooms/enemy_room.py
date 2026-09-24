@@ -1,10 +1,10 @@
 import textwrap
 import time
 import random
-from hero import Character, Gold
-from items import Weapon, Armour, Potion
-from monsters import Monster, wise_owl, skeleton_pirate, rat_king, knight, eye, axe_orc, glowing_moth, rose_assasin
-from story import print_choices
+from game.entities.adventurer import Character, Gold
+from game.assets.items import Weapon, Armour, Potion
+from game.entities.monsters import Monster, wise_owl, skeleton_pirate, rat_king, knight, eye, axe_orc, glowing_moth, rose_assasin
+from game.core.story import print_choices
 
 fight_messages = [
 	"The monster stumbles, but regains its footing.\n",

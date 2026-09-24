@@ -1,8 +1,8 @@
 import time
 import textwrap
 import random
-from story import print_choices
-from hero import Character, Gold
+from game.core.story import print_choices
+from game.entities.adventurer import Character, Gold
 
 def empty(character: Character):
 	print(textwrap.fill("The room seems to be empty, nothing standing out.", 70))

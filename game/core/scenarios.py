@@ -1,10 +1,9 @@
 import time
 import textwrap
 import random
-from hero import Character
-from rooms import Room
-from rooms import walls, room_adjectives
-from story import print_choices
+from game.entities.adventurer import Character
+from game.rooms.rooms import Room, walls, room_adjectives
+from game.core.story import print_choices
 
 def print_weapons(character: Character):
 	print("Weapons".center(20, "-") + "\n")

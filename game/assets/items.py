@@ -1,26 +1,26 @@
 import random
 
 class Weapon:
-	def __init__(self, name: str = None, damage: int = 0, desc: str = None, price: int = 0):
+	def __init__(self, name: str = None, points: int = 0, desc: str = None, price: int = 0):
 		self.name = name
-		self.damage = damage
+		self.points = points
 		self.desc = desc
 		self.sell_price = price
-		self.buy_price = price * 2
+		self.buy_price = price * 3
 
 	def __str__(self):
-		return f"[{self.name}] (+{self.damage} ATK): {self.desc}"
+		return f"[{self.name}] (+{self.points} ATK): {self.desc}"
 
 class Armour:
-	def __init__(self, name: str = None, protection: int = 0, desc: str = None, price: int = 0):
+	def __init__(self, name: str = None, points: int = 0, desc: str = None, price: int = 0):
 		self.name = name
-		self.protection = protection
+		self.points = points
 		self.desc = desc
 		self.sell_price = price
 		self.buy_price = price * 2
 
 	def __str__(self):
-		return f"[{self.name}] (+{self.protection} DEF): {self.desc}"
+		return f"[{self.name}] (+{self.points} DEF): {self.desc}"
 
 class Potion:
 	def __init__(self, name: str, points:int, desc: str, price: int = 0):

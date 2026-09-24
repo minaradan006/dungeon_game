@@ -1,10 +1,11 @@
 import textwrap
 import time
 import random
-from hero import Character, Gold
-from items import Weapon, Armour, Potion
-from monsters import Monster, shadow_dragon
-from story import print_choices
+from game.entities.adventurer import Character, Gold
+from game.assets.items import Weapon, Armour, Potion
+from game.entities.monsters import Monster, shadow_dragon
+from game.core.story import print_choices
+from game.entities.monsters import shadow_dragon
 
 fight_messages = [
 	"The Shadow Dragon's dark blue eyes glow brighter as it glares at you.",
@@ -16,7 +17,9 @@ fight_messages = [
 	"A few small flames float around The Shadow Dragon."
 ]
 
-def boss(character: Character, boss: Monster):
+def boss(character: Character):
+	boss = shadow_dragon
+
 	print(textwrap.fill("You step off the ladder and you dust yourself off from all that you have been through in The Dungeon of Shadow and Light.") + "\n")
 	time.sleep(5)
 

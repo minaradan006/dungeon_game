@@ -1,8 +1,8 @@
 import random
 import time
 import textwrap
-from hero import Character
-from story import print_choices
+from game.entities.adventurer import Character
+from game.core.story import print_choices
 
 d20 = r"""
                          _

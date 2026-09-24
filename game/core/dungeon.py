@@ -1,18 +1,17 @@
 import random
 import time
 import textwrap
-from hero import Character
-from items import Weapon, Armour, Potion
-from rooms import Room
-from story import show_start_screen, begin_story, end_story
-from scenarios  import scenario_1, scenario_2, scenario_3
-from enemy_room import enemy
-from treasure_room import treasure
-from empty_room import empty
-from trap_room import trap
-from shop_room import shop
-from boss_room import boss
-from monsters import shadow_dragon
+from game.entities.adventurer import Character
+from game.assets.items import Weapon, Armour, Potion
+from game.rooms.rooms import Room
+from game.core.story import show_start_screen, begin_story, end_story
+from game.core.scenarios  import scenario_1, scenario_2, scenario_3
+from game.rooms.enemy_room import enemy
+from game.rooms.treasure_room import treasure
+from game.rooms.empty_room import empty
+from game.rooms.trap_room import trap
+from game.rooms.shop_room import shop
+from game.rooms.boss_room import boss
 
 def fainted():
 	print(textwrap.fill("You open your eyes and see the faint sunlight streaming through the tree leaves.", 70) + "\n")
@@ -62,21 +61,11 @@ def enter_room(room: Room, character: Character, level: int, first_shop: list):
 	print("-" * 70 + "\n")
 	time.sleep(1)
 
-if __name__ == "__main__":
+def start_game():
 	show_start_screen()
 
 	name, attack, defense = begin_story()
 	character = Character(name, attack, defense)
-
-	longsword = Weapon("Longsword", 100, "Heavy and slow, but sturdy.", 20)
-	character.inventory["weapons"].append(longsword)
-	copper_helmet = Armour("Copper Helmet", 5, "A few scratches can be seen reflected in the light.", 10)
-	silver_dagger = Weapon("Silver Dagger", 4, "Small but very agile.", 7)
-	small_potion = Potion("Small Potion", 10, "Can be used to heal a small amount of health.", 5)
-	character.inventory["weapons"].append(silver_dagger)
-	character.inventory["armour"].append(copper_helmet)
-	character.inventory["health potions"].append(small_potion)
-	character.lockpicks = 3
 
 	first_shop = [True, True, True]
 	for level in range(1, 5):
@@ -85,7 +74,7 @@ if __name__ == "__main__":
 		print("=" * 70 + "\n")
 		time.sleep(1)
 
-		mini_stages = 1
+		mini_stages = random.choice([2, 3, 4])
 
 		for mini in range(0, mini_stages):
 			scenario = random.choice([1, 2, 3])
@@ -127,6 +116,7 @@ if __name__ == "__main__":
 	print("=" * 70 + "\n")
 	time.sleep(1)
 
-	boss(character, shadow_dragon)
+	if not boss(character):
+		fainted()
 
 	end_story(character)

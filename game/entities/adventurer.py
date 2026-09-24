@@ -1,6 +1,6 @@
 import time
 import random
-from items import Weapon, Armour, Potion
+from game.assets.items import Weapon, Armour, Potion
 
 class Character:
 	def __init__(self, name: str, attack: int, defense: int):
@@ -9,8 +9,8 @@ class Character:
 		self.max_health = 100
 		self.attack = attack
 		self.defense = defense
-		self.gold = 0
-		self.lockpicks = 0
+		self.gold = 20
+		self.lockpicks = 1
 		self.inventory = {
 			"weapons": [],
 			"armour": [],

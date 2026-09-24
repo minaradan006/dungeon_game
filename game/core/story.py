@@ -1,6 +1,6 @@
 import time
 import textwrap
-from hero import Character
+from game.entities.adventurer import Character
 
 def show_start_screen():
 	time.sleep(0.5)

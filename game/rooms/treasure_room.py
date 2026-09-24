@@ -1,9 +1,9 @@
 import random
 import time
 import textwrap
-from hero import Character, Gold
-from story import print_choices
-from items import Weapon, Armour, Potion, wooden_chest_loot, silver_chest_loot, golden_chest_loot
+from game.entities.adventurer import Character, Gold
+from game.core.story import print_choices
+from game.assets.items import Weapon, Armour, Potion, wooden_chest_loot, silver_chest_loot, golden_chest_loot
 
 wooden_chest_sprite = r"""
                          _                 _
@@ -67,7 +67,7 @@ class Chest:
 
 		character.lockpicks -= self.locks
 		num_items = random.choices(
-				[1, 2, 3], weights=[0.7, 0.2, 0.1],
+				[1, 2, 3], weights=[0.45, 0.3, 0.25],
 				)[0]
 
 		print(f"You successfully opened the chest and received {num_items} items...\n")
